@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>
+      Login
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+
+    <form (ngSubmit)="enterLogin()">
+      <ion-item class="form-group">
+        <ion-label class="form-label">Usuário</ion-label>
+        <ion-input type="text" name="usuario" [(ngModel)]="login.usuario" class="form-control"></ion-input>
+      </ion-item>
+
+      <ion-item class="form-group">
+        <ion-label class="form-label">Senha</ion-label>
+        <ion-input type="password" name="senha" [(ngModel)]="login.senha" class="form-control"></ion-input>
+      </ion-item>
+
+      <button ion-button class="btn btn-primary" type="submit" block>Logar no sistema</button>
+    </form>
+  </div>
+</ion-content>
