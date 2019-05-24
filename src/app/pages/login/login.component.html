@@ -23,6 +23,7 @@
           <label class="form-check-label" for="lembrar-input">Lembrar senha</label>
         </div>
         <button type="submit" class="btn btn-primary">Logar no sistema</button>
+        <div *ngIf="message" class="text-danger">{{ message }}</div>
       </form>
     </div>
   </ion-content>
