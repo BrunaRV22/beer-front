@@ -1,5 +1,7 @@
 {
   "name": "beer-front",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

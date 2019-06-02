@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, OnDestroy } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -8,9 +8,9 @@ import { Subscription } from 'rxjs';
     templateUrl: './login.component.html',
     styleUrls: [ './login.component.scss' ]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnDestroy {
     subscription: Subscription;
-    login: { usuario: string, senha: string };
+    login: { email: string, senha: string };
     message: string;
 
     constructor(
@@ -18,26 +18,14 @@ export class LoginComponent implements OnInit {
         private readonly router: Router
     ) {
         this.login = {
-            usuario: null,
+            email: null,
             senha: null
         };
     }
 
-    ngOnInit() {
-        const u = localStorage.getItem('u');
-
-        if (u) {
-            this.login.usuario = u;
-        }
-    }
-
-    enviarDados($checkbox: HTMLInputElement) {
-        this.subscription = this.service.loginIn(this.login.usuario, this.login.senha)
+    enviarDados() {
+        this.subscription = this.service.loginIn(this.login.email, this.login.senha)
             .subscribe(() => {
-                if ($checkbox.checked) {
-                    localStorage.setItem('u', this.login.usuario);
-                }
-
                 this.message = null;
                 alert('Usuário Logado no sistema!');
                 this.router.navigate(['/home'])
@@ -54,5 +42,11 @@ export class LoginComponent implements OnInit {
 
     get spinner() {
         return this.subscription && this.subscription.closed;
+    }
+
+    ngOnDestroy() {
+        if (this.subscription) {
+            this.subscription.unsubscribe();
+        }
     }
 }

@@ -1,0 +1,41 @@
+.header {
+    height: 40px;
+    background-color: rgba(247, 46, 46, 0.6);
+
+    .lbl_entregar {
+        font-size: 12px;
+    }
+    
+    .spn_endereco {
+        font-size: 10px;
+    }
+
+    .endereco {
+        margin-left: 20px;
+    }
+
+    .img-thumbnail {
+        border-radius: 50%;
+    }
+
+    .center {
+        display: table;
+        height: 100%;
+        width: 100%;
+
+        &.position-right {
+            text-align: right;
+            padding-right: 20px;
+        }
+
+        .vertical-center {
+            display: table-cell;
+            vertical-align: middle;           
+        }
+    }
+
+    .logar {
+        color: black;
+        text-decoration: none !important;
+    }
+}
