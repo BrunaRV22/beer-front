@@ -1,8 +1,6 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
 import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
 
 @Injectable()
 export class LoginService {
@@ -11,7 +9,7 @@ export class LoginService {
     constructor(
         private readonly http: HttpClient
     ) {
-        this.url = `${environment.url}/login`;
+        this.url = `https://beer-api-bruna.herokuapp.com/login`;
     }
 
     loginIn(usuario: string, senha: string) {

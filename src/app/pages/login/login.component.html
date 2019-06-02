@@ -1,30 +1,26 @@
-<ion-header>
-    <ion-toolbar>
-      <ion-title>
-        Login
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
-  
-  <ion-content>
-    <div class="ion-padding">
-      <form (submit)="enviarDados()">
-        <div class="form-group">
-          <label for="email-input">E-mail</label>
-          <input type="email" [(ngModel)]="login.usuario" class="form-control" id="email-input" name="email-input" aria-describedby="emailHelp" placeholder="Digite seu e-mail">
-          <small id="emailHelp" class="form-text text-muted">Nós não compartilhamos seu e-mail com ninguém</small>
-        </div>
-        <div class="form-group">
-          <label for="senha-input">Senha</label>
-          <input type="password" [(ngModel)]="login.senha" class="form-control" id="senha-input" name="senha-input" placeholder="Senha">
-        </div>
-        <div class="form-group form-check">
-          <input type="checkbox" class="form-check-input" id="lembrar-input">
-          <label class="form-check-label" for="lembrar-input">Lembrar senha</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Logar no sistema</button>
-        <div *ngIf="message" class="text-danger">{{ message }}</div>
-      </form>
-    </div>
-  </ion-content>
-   
+<div class="container">
+  <div class="row justify-content-center align-items-center">
+    <form class="col-10 col-sm-6" (submit)="enviarDados(checkbox)" autocomplete="off">
+      <div class="form-group">
+        <label for="email-input">E-mail</label>
+        <input type="email" [(ngModel)]="login.usuario" class="form-control" id="email-input" name="email-input"
+          aria-describedby="emailHelp" placeholder="Digite seu e-mail" autocomplete="false">
+        <small id="emailHelp" class="form-text text-muted">Nós não compartilhamos seu e-mail com ninguém</small>
+      </div>
+      <div class="form-group">
+        <label for="senha-input">Senha</label>
+        <input type="password" [(ngModel)]="login.senha" class="form-control" id="senha-input" name="senha-input"
+          placeholder="Senha" autocomplete="false">
+      </div>
+      <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="lembrar-input" #checkbox>
+        <label class="form-check-label" for="lembrar-input">Lembrar usuário</label>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="spinner">
+        <i class="fa fa-spinner fa-pulse" *ngIf="spinner"></i>
+        Logar no sistema
+      </button>
+      <div *ngIf="message" class="text-danger">{{ message }}</div>
+    </form>
+  </div>
+</div>
