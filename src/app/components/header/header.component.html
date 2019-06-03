@@ -12,7 +12,7 @@
         <div class="center position-right">
             <ng-container *ngIf="isLogged; else notLogged">
                 <div class="vertical-center">
-                    <img [src]="getAuth.image" class="img-thumbnail">
+                    <img [src]="getAuth.image" class="img" (click)="logout()">
                 </div>
             </ng-container>
 
