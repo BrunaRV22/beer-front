@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthService } from './services/auth.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ApiInterceptorService } from './services/api-interceptor.service';
+import { ProdutoService } from './services/produto.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +26,7 @@ import { ApiInterceptorService } from './services/api-interceptor.service';
     StatusBar,
     SplashScreen,
     AuthService,
+    ProdutoService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiInterceptorService,

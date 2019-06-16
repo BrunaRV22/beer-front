@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
 import { HeaderModule } from 'src/app/components/header/header.module';
+import { HomeResolverService } from './home-resolver.service';
 
 @NgModule({
   imports: [
@@ -16,10 +17,14 @@ import { HeaderModule } from 'src/app/components/header/header.module';
     RouterModule.forChild([
       {
         path: '',
-        component: HomePage
+        component: HomePage,
+        resolve: {
+          produtos: HomeResolverService
+        }
       }
     ])
   ],
-  declarations: [HomePage]
+  declarations: [HomePage],
+  providers: [ HomeResolverService ]
 })
 export class HomePageModule {}

@@ -2,21 +2,20 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { AuthService } from './auth.service';
+import { Global } from './global';
 
 @Injectable()
-export class LoginService {
-    private readonly url: string;
-
+export class LoginService extends Global {
     constructor(
         private readonly http: HttpClient,
         private readonly auth: AuthService
     ) {
-        this.url = `https://beer-api-bruna.herokuapp.com/login`;
+        super();
     }
 
     loginIn(email: string, senha: string) {
         return this.http.post<{ usuario: string, email: string, imagem: string }>
-        (this.url, { email, senha }, {
+        (`${this.url}/login`, { email, senha }, {
             observe: 'response'
         })
         .pipe(

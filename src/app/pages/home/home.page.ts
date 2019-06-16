@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Produto } from 'src/app/model/produto';
 
 @Component({
   selector: 'app-home',
@@ -7,5 +8,19 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  produtos: Produto[];
 
+  constructor(
+    readonly route: ActivatedRoute,
+    private readonly router: Router
+  ) {
+    route.data
+      .subscribe((params) => this.produtos = params.produtos);
+  }
+
+  comprar(id: string) {
+    this.router.navigate(['/produtos/compra'], {
+      queryParams: { id }
+    });
+  }
 }
