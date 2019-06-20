@@ -5,15 +5,14 @@
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
-    "dev": "ng serve",
+    "start": "ng serve",
     "start-prod": "ng serve --prod=true",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "publish": "ionic cordova build android",
-    "in-device": "ionic cordova run android --device --status",
-    "start": "node server.js"
+    "in-device": "ionic cordova run android --device --status"
   },
   "private": true,
   "dependencies": {
