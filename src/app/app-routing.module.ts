@@ -5,8 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
-    redirectTo: 'login'
+    loadChildren: () => import('./template/default/default.module').then((m) => m.DefaultModule)
   },
   {
     path: 'login',

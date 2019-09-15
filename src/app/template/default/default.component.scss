@@ -1,0 +1,20 @@
+.navbar {
+
+    .navbar-text {
+        .text-title {
+            text-transform: uppercase;
+            color: rgba($color: white, $alpha: 0.7);
+        }
+
+        .text-address {
+            .address {
+                margin: 0 5px;
+            }
+
+            .address,
+            .fa-home {
+                color: white;
+            }
+        }
+    }
+}
