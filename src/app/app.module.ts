@@ -7,6 +7,7 @@ import { ApiInterceptorService } from './services/api-interceptor.service';
 import { AuthService } from './services/auth.service';
 import { TokenService } from './services/token.service';
 import { HttpClientModule } from '@angular/common/http';
+import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,11 @@ import { HttpClientModule } from '@angular/common/http';
   providers: [
     ApiInterceptorService,
     AuthService,
-    TokenService
+    TokenService,
+    {
+      provide: LocationStrategy,
+      useClass: PathLocationStrategy
+    }
   ],
   bootstrap: [AppComponent]
 })
