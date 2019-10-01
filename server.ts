@@ -20,12 +20,14 @@ import 'zone.js/dist/zone-node';
 import * as express from 'express';
 import { join } from 'path';
 import { hidePoweredBy, noCache, frameguard } from 'helmet';
+import * as compression from 'compression';
 
 // Express server
 const app = express();
 app.use(hidePoweredBy());
 app.use(noCache());
 app.use(frameguard());
+app.use(compression());
 
 const PORT = process.env.PORT || 4000;
 const DIST_FOLDER = join(process.cwd(), 'dist/browser');
