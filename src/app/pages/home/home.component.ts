@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Produto } from 'src/app/model/produto';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -12,15 +13,20 @@ export class HomeComponent {
 
   constructor(
     readonly route: ActivatedRoute,
-    private readonly router: Router
+    private readonly router: Router,
+    readonly title: Title
   ) {
     route.data
-      .subscribe((params) => this.produtos = params.produtos);
+      .subscribe((params) => {
+        if (params.title) {
+          title.setTitle(params.title);
+        }
+
+        this.produtos = params.produtos;
+      });
   }
 
   comprar(id: string) {
-    this.router.navigate(['/produtos/compra'], {
-      queryParams: { id }
-    });
+    this.router.navigate(['/produtos', id]);
   }
 }

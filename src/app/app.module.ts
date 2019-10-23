@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +9,13 @@ import { TokenService } from './services/token.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 
+import { registerLocaleData } from '@angular/common';
+import localeBR from '@angular/common/locales/pt';
+import localeBRExtra from '@angular/common/locales/extra/pt';
+import { DefaultModule } from './template/default/default.module';
+
+registerLocaleData(localeBR, 'pt-BR', localeBRExtra);
+
 @NgModule({
   declarations: [
     AppComponent
@@ -16,7 +23,9 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+
+    DefaultModule
   ],
   providers: [
     ApiInterceptorService,
@@ -25,6 +34,10 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
     {
       provide: LocationStrategy,
       useClass: PathLocationStrategy
+    },
+    {
+      provide: LOCALE_ID,
+      useValue: 'pt-BR'
     }
   ],
   bootstrap: [AppComponent]

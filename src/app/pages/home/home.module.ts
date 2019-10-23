@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 
 import { HomeResolverService } from './home-resolver.service';
 import { HomeComponent } from './home.component';
+import { ProdutoService } from 'src/app/services/produto.service';
 
 @NgModule({
   imports: [
@@ -16,11 +17,15 @@ import { HomeComponent } from './home.component';
         component: HomeComponent,
         resolve: {
           produtos: HomeResolverService
-        }
+        },
+        data: { title: 'Beer - Home' }
       }
     ])
   ],
   declarations: [HomeComponent],
-  providers: [HomeResolverService]
+  providers: [
+    ProdutoService,
+    HomeResolverService
+  ]
 })
 export class HomePageModule { }
