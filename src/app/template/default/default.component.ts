@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { CompraService } from 'src/app/services/compra.service';
 
 @Component({
     selector: 'app-default',
@@ -8,6 +9,11 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class DefaultComponent {
     constructor(
-        private readonly auth: AuthService
+        private readonly auth: AuthService,
+        private readonly compraService: CompraService
     ) {  }
+
+    total() {
+        return this.compraService.totalItens();
+    }
 }

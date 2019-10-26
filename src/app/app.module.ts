@@ -13,6 +13,9 @@ import { registerLocaleData } from '@angular/common';
 import localeBR from '@angular/common/locales/pt';
 import localeBRExtra from '@angular/common/locales/extra/pt';
 import { DefaultModule } from './template/default/default.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CompraComponent } from './components/modal/compra/compra.component';
+import { CompraModule } from './components/modal/compra/compra.module';
 
 registerLocaleData(localeBR, 'pt-BR', localeBRExtra);
 
@@ -25,7 +28,9 @@ registerLocaleData(localeBR, 'pt-BR', localeBRExtra);
     AppRoutingModule,
     HttpClientModule,
 
-    DefaultModule
+    DefaultModule,
+    NgbModule,
+    CompraModule
   ],
   providers: [
     ApiInterceptorService,
@@ -40,6 +45,9 @@ registerLocaleData(localeBR, 'pt-BR', localeBRExtra);
       useValue: 'pt-BR'
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    CompraComponent
+  ]
 })
 export class AppModule { }

@@ -16,12 +16,24 @@
                 <a class="nav-link" href="#">Promoções</a>
             </li>
         </ul>
+        <div class="navbar-text" style="margin-right: 30px;">
+            <div class="text-title">
+                <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                Sacola
+            </div>
+
+<!--             <div class="text-address" [ngPlural]="total()">
+                <ng-container ngPluralCase="zero">Nenhum item na sacola</ng-container>
+                <ng-container ngPluralCase="one">Um item na sacola</ng-container>
+                <ng-container ngPluralCase="many">{{ total() | async }} itens na sacola</ng-container>
+            </div> -->
+        </div>
         <div class="navbar-text">
-            <div class="text-title">Entregar em</div>
+            <div class="text-title uppercase">Entregar em</div>
             <div class="text-address">
                 <i class="fa fa-home"></i>
                 <span class="address">Rua Nuporanga, 147</span>
-                <i class="fa fa-chevron-down"></i>
+                <i class="fa fa-chevron-down" aria-hidden="true"></i>
             </div>
         </div>
     </div>

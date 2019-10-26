@@ -6,11 +6,14 @@ import { RouterModule } from '@angular/router';
 import { HomeResolverService } from './home-resolver.service';
 import { HomeComponent } from './home.component';
 import { ProdutoService } from 'src/app/services/produto.service';
+import { ModalModule } from 'src/app/services/custom';
+import { CompraService } from 'src/app/services/compra.service';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    ModalModule.forRoot(),
     RouterModule.forChild([
       {
         path: '',
@@ -20,12 +23,13 @@ import { ProdutoService } from 'src/app/services/produto.service';
         },
         data: { title: 'Beer - Home' }
       }
-    ])
+    ]),
   ],
-  declarations: [HomeComponent],
+  declarations: [ HomeComponent ],
   providers: [
     ProdutoService,
-    HomeResolverService
+    HomeResolverService,
+    CompraService
   ]
 })
 export class HomePageModule { }

@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Produto } from 'src/app/model/produto';
 import { Title } from '@angular/platform-browser';
+import { CompraComponent } from 'src/app/components/modal/compra/compra.component';
+import { ModalService } from 'src/app/services/custom/modal/modal.service';
+import { CompraService } from 'src/app/services/compra.service';
 
 @Component({
   selector: 'app-home',
@@ -13,8 +16,9 @@ export class HomeComponent {
 
   constructor(
     readonly route: ActivatedRoute,
-    private readonly router: Router,
-    readonly title: Title
+    readonly title: Title,
+    private readonly modalService: ModalService,
+    private readonly comprarService: CompraService
   ) {
     route.data
       .subscribe((params) => {
@@ -26,7 +30,8 @@ export class HomeComponent {
       });
   }
 
-  comprar(id: string) {
-    this.router.navigate(['/produtos', id]);
+  comprar(produto: Produto) {
+    this.comprarService.comprar(produto);
+    this.modalService.open(CompraComponent);
   }
 }

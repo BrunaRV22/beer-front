@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
+import { CompraComponent } from './compra.component';
 import { CommonModule } from '@angular/common';
-import { DefaultComponent } from './default.component';
-import { RouterModule } from '@angular/router';
+import { ModalModule } from 'src/app/services/custom';
 import { CompraService } from 'src/app/services/compra.service';
 
 @NgModule({
+    declarations: [ CompraComponent ],
     imports: [
         CommonModule,
-        RouterModule
+        ModalModule.forRoot()
     ],
-    declarations: [ DefaultComponent ],
-    exports: [ DefaultComponent ],
+    exports: [ CompraComponent ],
     providers: [ CompraService ]
 })
-export class DefaultModule {  }
+export class CompraModule {  }
