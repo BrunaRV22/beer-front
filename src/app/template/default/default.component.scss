@@ -17,3 +17,16 @@
         }
     }
 }
+
+.sacola {
+    cursor: pointer;
+
+    .text-title,
+    .text-address {
+        padding: 0 5px;
+    }
+
+    &:hover {
+        outline: 1px solid rgba($color: #fff, $alpha: 0.3);
+    }
+}

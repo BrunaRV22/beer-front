@@ -16,17 +16,19 @@
                 <a class="nav-link" href="#">Promoções</a>
             </li>
         </ul>
-        <div class="navbar-text" style="margin-right: 30px;">
+        <div class="navbar-text sacola" style="margin-right: 30px;" (click)="visualizar_sacola()">
             <div class="text-title">
                 <i class="fa fa-shopping-bag" aria-hidden="true"></i>
                 Sacola
             </div>
 
-<!--             <div class="text-address" [ngPlural]="total()">
-                <ng-container ngPluralCase="zero">Nenhum item na sacola</ng-container>
-                <ng-container ngPluralCase="one">Um item na sacola</ng-container>
-                <ng-container ngPluralCase="many">{{ total() | async }} itens na sacola</ng-container>
-            </div> -->
+            <div class="text-address">
+                <ng-container [ngPlural]="total() | async">
+                    <ng-template ngPluralCase="=0">Nenhum item na sacola</ng-template>
+                    <ng-template ngPluralCase="=1">Um item na sacola</ng-template>
+                    <ng-template ngPluralCase="other">{{ total() | async }} itens na sacola</ng-template>
+                </ng-container>
+            </div>
         </div>
         <div class="navbar-text">
             <div class="text-title uppercase">Entregar em</div>

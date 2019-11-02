@@ -21,6 +21,7 @@ export class CompraComponent {
 
     adicionar() {
         this.comprarService.adicionar(this.produto);
+        this.close();
     }
 
     close() {

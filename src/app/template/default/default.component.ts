@@ -16,4 +16,8 @@ export class DefaultComponent {
     total() {
         return this.compraService.totalItens();
     }
+
+    visualizar_sacola() {
+        
+    }
 }

@@ -30,7 +30,7 @@ export class HomeComponent {
       });
   }
 
-  comprar(produto: Produto) {
+  adicionar(produto: Produto) {
     this.comprarService.comprar(produto);
     this.modalService.open(CompraComponent);
   }

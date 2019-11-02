@@ -16,6 +16,8 @@ import { DefaultModule } from './template/default/default.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CompraComponent } from './components/modal/compra/compra.component';
 import { CompraModule } from './components/modal/compra/compra.module';
+import { CompraService } from './services/compra.service';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 registerLocaleData(localeBR, 'pt-BR', localeBRExtra);
 
@@ -30,12 +32,14 @@ registerLocaleData(localeBR, 'pt-BR', localeBRExtra);
 
     DefaultModule,
     NgbModule,
-    CompraModule
+    CompraModule,
+    ModalModule.forRoot()
   ],
   providers: [
     ApiInterceptorService,
     AuthService,
     TokenService,
+    CompraService,
     {
       provide: LocationStrategy,
       useClass: PathLocationStrategy

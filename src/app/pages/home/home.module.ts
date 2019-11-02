@@ -7,7 +7,6 @@ import { HomeResolverService } from './home-resolver.service';
 import { HomeComponent } from './home.component';
 import { ProdutoService } from 'src/app/services/produto.service';
 import { ModalModule } from 'src/app/services/custom';
-import { CompraService } from 'src/app/services/compra.service';
 
 @NgModule({
   imports: [
@@ -28,8 +27,7 @@ import { CompraService } from 'src/app/services/compra.service';
   declarations: [ HomeComponent ],
   providers: [
     ProdutoService,
-    HomeResolverService,
-    CompraService
+    HomeResolverService
   ]
 })
 export class HomePageModule { }
