@@ -5,3 +5,8 @@ export class Produto {
     preco: number;
     descricao: string;
 }
+
+
+export class Sacola extends Produto {
+    quantidade: number;
+}

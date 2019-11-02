@@ -2,3 +2,17 @@
 .close {
     outline: none;
 }
+
+.input-group {
+    width: 150px;
+
+    .input-group-prepend,
+    .input-group-append {
+        text-align: center;
+
+        &,
+        .btn {
+            width: 40px;
+        }
+    }
+}

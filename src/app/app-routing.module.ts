@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DefaultComponent } from './template/default/default.component';
+import { SacolaActivatedService } from './services/activated/sacola.activated.service';
 
 
 const routes: Routes = [
@@ -22,6 +23,13 @@ const routes: Routes = [
           }
         ]
       },
+      {
+        path: 'sacola',
+        loadChildren: () => import('./pages/sacola/sacola.module').then((m) => m.SacolaModule),
+        runGuardsAndResolvers: 'always',
+        canActivate: [ SacolaActivatedService ]
+
+      }
     ]
   },
   {
@@ -34,6 +42,9 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, {
     useHash: false
   })],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [
+    SacolaActivatedService
+  ]
 })
 export class AppRoutingModule { }

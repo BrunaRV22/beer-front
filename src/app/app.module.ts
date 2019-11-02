@@ -7,17 +7,17 @@ import { ApiInterceptorService } from './services/api-interceptor.service';
 import { AuthService } from './services/auth.service';
 import { TokenService } from './services/token.service';
 import { HttpClientModule } from '@angular/common/http';
-import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { LocationStrategy, PathLocationStrategy, APP_BASE_HREF } from '@angular/common';
 
 import { registerLocaleData } from '@angular/common';
 import localeBR from '@angular/common/locales/pt';
 import localeBRExtra from '@angular/common/locales/extra/pt';
 import { DefaultModule } from './template/default/default.module';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CompraComponent } from './components/modal/compra/compra.component';
 import { CompraModule } from './components/modal/compra/compra.module';
 import { CompraService } from './services/compra.service';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 registerLocaleData(localeBR, 'pt-BR', localeBRExtra);
 
@@ -31,7 +31,6 @@ registerLocaleData(localeBR, 'pt-BR', localeBRExtra);
     HttpClientModule,
 
     DefaultModule,
-    NgbModule,
     CompraModule,
     ModalModule.forRoot()
   ],
@@ -40,6 +39,10 @@ registerLocaleData(localeBR, 'pt-BR', localeBRExtra);
     AuthService,
     TokenService,
     CompraService,
+    {
+      provide: APP_BASE_HREF,
+      useValue: '/'
+    },
     {
       provide: LocationStrategy,
       useClass: PathLocationStrategy

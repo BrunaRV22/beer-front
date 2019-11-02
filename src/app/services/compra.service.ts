@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Produto } from '../model/produto';
 import { BehaviorSubject, from } from 'rxjs';
-import { switchMap, filter, defaultIfEmpty, count } from 'rxjs/operators';
+import { switchMap, filter } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class CompraService {
@@ -27,7 +27,11 @@ export class CompraService {
         return this.produto;
     }
 
-    adicionar(produto: Produto) {
+    adicionar(produto: Produto, quantidade: number = 1) {
+        for (let i = 1; i < quantidade; i++) {
+            this.sacola.push(produto);
+        }
+
         const index = this.sacola.push(produto) - 1;
         this.sacolaRx.next(this.sacola);
         this.sacolaTotalRx.next(this.sacola.length);
@@ -46,8 +50,7 @@ export class CompraService {
 
     itens() {
         return this.sacolaRx
-            .pipe(filter((data) => data !== null))
-            .pipe(switchMap((dados) => from(dados)));
+            .pipe(filter((data) => data !== null));
     }
 
     totalItens() {

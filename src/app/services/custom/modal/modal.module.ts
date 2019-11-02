@@ -1,17 +1,16 @@
 import { NgModule } from '@angular/core';
-import { ModuleWithProviders } from '@angular/compiler/src/core';
-import { ModalService } from './modal.service';
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModuleWithProviders } from '@angular/core';
+import * as modal from 'ngx-bootstrap/modal';
 
 @NgModule({
-    imports: [ NgbModalModule ]
+    imports: [ modal.ModalModule.forRoot() ]
 })
 export class ModalModule {
     static forRoot() {
         return {
             ngModule: ModalModule,
             providers: [
-                ModalService
+               modal.BsModalService
             ]
         } as ModuleWithProviders;
     }

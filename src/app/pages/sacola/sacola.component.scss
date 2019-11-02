@@ -1,0 +1,22 @@
+.card {
+    .card-img-left,
+    .card-body {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .card-img-left {
+        width: 200px;
+        height: 200px;
+        object-fit: contain;
+        margin: 12px 0;
+    }
+
+    .card-body {
+        width: calc(100% - 200px);
+
+        .card-title {
+            font-size: 26px;
+        }
+    }
+}

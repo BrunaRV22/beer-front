@@ -18,6 +18,6 @@ export class DefaultComponent {
     }
 
     visualizar_sacola() {
-        
+
     }
 }

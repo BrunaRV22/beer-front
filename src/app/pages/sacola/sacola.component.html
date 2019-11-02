@@ -1,0 +1,9 @@
+<div class="container">
+    <h1>Sacola</h1>
+
+    <ng-container *ngFor="let item of sacola">
+        <div class="item">
+            {{ item.quantidade }} x {{ item.nome }} = {{ item.preco * item.quantidade | currency: 'BRL' }}
+        </div>
+    </ng-container>
+</div>

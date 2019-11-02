@@ -9,6 +9,15 @@
         {{ produto.nome }} - {{ produto.preco | currency: 'BRL' }}
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="adicionar()">Adicionar</button>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <button type="button" class="btn btn-danger" (click)="quantidade = quantidade - 1" [disabled]="quantidade <= 0">-</button>
+            </div>
+            <input type="number" class="form-control text-center" min="1" max="9999" name="quantidade" id="quantidade" [(ngModel)]="quantidade">
+            <div class="input-group-append">
+                <button type="button" class="btn btn-primary" (click)="quantidade = quantidade + 1" [disabled]="quantidade >= 9999">+</button>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary" (click)="adicionar()" [disabled]="quantidade <= 0">Adicionar</button>
     </div>
 </ng-container>

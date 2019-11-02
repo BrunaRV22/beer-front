@@ -6,37 +6,54 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Início <span class="sr-only">(current)</span></a>
+            <li class="nav-item" routerLinkActive="active" routerLink="/" [routerLinkActiveOptions]="{ exact: true }">
+                <a class="nav-link" routerLink="/">Início <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Perfil</a>
+            <li class="nav-item" routerLinkActive="active" routerLink="/perfil"
+                [routerLinkActiveOptions]="{ exact: true }">
+                <a class="nav-link" routerLink="/perfil">Perfil</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Promoções</a>
+            <li class="nav-item" routerLinkActive="active" routerLink="/promocoes"
+                [routerLinkActiveOptions]="{ exact: true }">
+                <a class="nav-link" routerLink="/promocoes">Promoções</a>
             </li>
         </ul>
-        <div class="navbar-text sacola" style="margin-right: 30px;" (click)="visualizar_sacola()">
-            <div class="text-title">
-                <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                Sacola
-            </div>
+        <ng-container *ngIf="(total() | async) > 0; else sacolaVazia">
+            <a routerLink="/sacola" class="btn btn-link text-left navbar-text sacola" style="margin-right: 30px;">
+                <div class="text-title">
+                    <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                    Sacola
+                </div>
 
-            <div class="text-address">
-                <ng-container [ngPlural]="total() | async">
-                    <ng-template ngPluralCase="=0">Nenhum item na sacola</ng-template>
-                    <ng-template ngPluralCase="=1">Um item na sacola</ng-template>
-                    <ng-template ngPluralCase="other">{{ total() | async }} itens na sacola</ng-template>
-                </ng-container>
-            </div>
-        </div>
+                <div class="text-address">
+                    <ng-container [ngPlural]="total() | async">
+                        <ng-template ngPluralCase="=0">Nenhum item na sacola</ng-template>
+                        <ng-template ngPluralCase="=1">Um item na sacola</ng-template>
+                        <ng-template ngPluralCase="other">{{ total() | async }} itens na sacola</ng-template>
+                    </ng-container>
+                </div>
+            </a>
+        </ng-container>
+
+        <ng-template #sacolaVazia>
+            <a tooltip="Você não tem itens na sacola" class="btn btn-link text-left navbar-text sacola"
+                style="margin-right: 30px;">
+                <div class="text-title">
+                    <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                    Sacola
+                </div>
+
+                <div class="text-address">
+                    <ng-container [ngPlural]="total() | async">
+                        <ng-template ngPluralCase="=0">Nenhum item na sacola</ng-template>
+                        <ng-template ngPluralCase="=1">Um item na sacola</ng-template>
+                        <ng-template ngPluralCase="other">{{ total() | async }} itens na sacola</ng-template>
+                    </ng-container>
+                </div>
+            </a>
+        </ng-template>
         <div class="navbar-text">
-            <div class="text-title uppercase">Entregar em</div>
-            <div class="text-address">
-                <i class="fa fa-home"></i>
-                <span class="address">Rua Nuporanga, 147</span>
-                <i class="fa fa-chevron-down" aria-hidden="true"></i>
-            </div>
+            <button type="button" class="btn btn-link text-title">Cadastre-se</button>
         </div>
     </div>
 </nav>

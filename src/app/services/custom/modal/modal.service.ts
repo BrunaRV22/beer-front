@@ -1,19 +1,19 @@
 import { Injectable, TemplateRef } from '@angular/core';
-import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 
 @Injectable({ providedIn: 'root' })
 export class ModalService {
-    private modal: NgbModalRef<any>;
+    private modal: BsModalRef;
 
     constructor(
-        private readonly modalService: NgbModal
+        private readonly modalService: BsModalService
     ) {  }
 
-    open(content: TemplateRef<any> | any, options?: NgbModalOptions) {
-        this.modal = this.modalService.open(content, options);
+    open(content: TemplateRef<any> | any, options?: ModalOptions) {
+        this.modal = this.modalService.show(content, options);
     }
 
-    close(reason?: string) {
-        this.modal.dismiss(reason);
+    close() {
+        this.modal.hide();
     }
 }

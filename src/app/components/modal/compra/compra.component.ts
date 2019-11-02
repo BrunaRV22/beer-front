@@ -10,6 +10,7 @@ import { Produto } from 'src/app/model/produto';
 })
 export class CompraComponent {
     produto: Produto;
+    quantidade = 1;
 
     constructor(
         private readonly modal: ModalService,
@@ -20,7 +21,7 @@ export class CompraComponent {
     }
 
     adicionar() {
-        this.comprarService.adicionar(this.produto);
+        this.comprarService.adicionar(this.produto, this.quantidade);
         this.close();
     }
 

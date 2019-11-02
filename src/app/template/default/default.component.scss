@@ -1,7 +1,8 @@
 .navbar {
 
     .navbar-text {
-        .text-title {
+        .text-title,
+        .text-address {
             color: rgba($color: white, $alpha: 0.7);
         }
 
@@ -15,6 +16,15 @@
                 color: white;
             }
         }
+    }
+}
+
+.btn-link {
+    &,
+    &:hover,
+    &:active,
+    &:visited {
+        text-decoration: none;
     }
 }
 
