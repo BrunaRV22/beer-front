@@ -1,13 +1,23 @@
+h1 {
+    margin-bottom: 25px;
+}
+
 .card {
+    border-radius: 0px;
+}
+
+.card.card-custom {
+    margin-bottom: 5px;
+
     .card-img-left,
     .card-body {
-        display: table-cell;
+        display: inline-block;
         vertical-align: middle;
     }
 
     .card-img-left {
-        width: 200px;
-        height: 200px;
+        width: 100px;
+        height: 100px;
         object-fit: contain;
         margin: 12px 0;
     }
@@ -17,6 +27,27 @@
 
         .card-title {
             font-size: 26px;
+            margin-bottom: 0px;
+            border: none;
+        }
+    }
+}
+
+.card.main {
+
+    .card-title {
+        padding: 10px 20px;
+        font-size: 22px;
+    }
+
+    .card-body {
+        .btn {
+            width: 100%;
+            margin-bottom: 5px;
+
+            &:last-of-type {
+                margin-bottom: 0px;
+            }
         }
     }
 }

@@ -1,9 +1,40 @@
-<div class="container">
+<div class="container" *ngIf="sacola">
     <h1>Sacola</h1>
 
-    <ng-container *ngFor="let item of sacola">
-        <div class="item">
-            {{ item.quantidade }} x {{ item.nome }} = {{ item.preco * item.quantidade | currency: 'BRL' }}
+    <div class="row no-padding">
+        <div class="col-8">
+            <div class="card card-custom" *ngFor="let item of sacola.produtos">
+                <div class="d-block">
+                        <img [src]="item.foto" [alt]="item.nome" class="card-img-left">
+
+                        <div class="card-body">
+                            <div class="card-title">
+                                <div class="pull-left">{{ item.quantidade }}x {{ item.nome }}</div>
+                                <div class="pull-right">{{ item.preco * item.quantidade | currency: 'BRL' }}</div>
+                            </div>
+                        </div>
+                </div>
+
+                <div class="card-footer">
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-danger" style="margin-right: 10px;" (click)="remover(item)">Remover</button>
+                        <button type="button" class="btn btn-warning" (click)="editar(item)">Editar</button>
+                    </div>
+                </div>
+            </div>
         </div>
-    </ng-container>
+        <div class="col-4">
+            <div class="card main">
+                <div class="card-title">
+                    <div class="pull-left">Subtotal:</div>
+                    <div class="pull-right"><strong>{{ sacola.total | currency: 'BRL' }}</strong></div>
+                </div>
+
+                <div class="card-body">
+                    <button type="button" class="btn btn-secondary" routerLink="/">Continuar a comprar</button>
+                    <button type="button" class="btn btn-primary">Escolher local de entrega</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

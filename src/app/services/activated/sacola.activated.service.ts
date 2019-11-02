@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { CompraService } from '../compra.service';
-import { first, map, tap } from 'rxjs/operators';
+import { first, map, tap, last, take } from 'rxjs/operators';
 
 @Injectable()
 export class SacolaActivatedService implements CanActivate {
@@ -12,7 +12,7 @@ export class SacolaActivatedService implements CanActivate {
 
     canActivate() {
         return this.service.totalItens()
-            .pipe(first())
+            .pipe(take(1))
             .pipe(map((total) => total > 0))
             .pipe(tap((result) => {
                 if (!result) {

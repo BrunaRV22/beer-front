@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
 import { CompraService } from 'src/app/services/compra.service';
-import { groupBy, first, switchMap, mergeMap, toArray, reduce, map } from 'rxjs/operators';
+import { groupBy, first, switchMap, mergeMap, toArray, reduce, map, last, take } from 'rxjs/operators';
 import { from } from 'rxjs';
+import { Sacola } from 'src/app/model/produto';
 
 @Injectable()
 export class SacolaResolverService implements Resolve<any> {
@@ -12,14 +13,15 @@ export class SacolaResolverService implements Resolve<any> {
 
     resolve() {
         return this.service.itens()
-            .pipe(first())
+            .pipe(take(1))
             .pipe(switchMap((data) => from(data)))
             .pipe(groupBy((p) => p.id))
             .pipe(mergeMap((group) => group.pipe(toArray())))
-            .pipe(map((produtos) => {
-                const produto = produtos[0];
-                return Object.assign(produto, { quantidade: produtos.length });
-            }))
-            .pipe(reduce((total, produtos: any) => [...total, produtos], []));
+            .pipe(map((produtos) => new Sacola(produtos[0], produtos.length)))
+            .pipe(reduce((total, produto: Sacola) => [...total, produto], [] as Sacola[]))
+            .pipe(map((produtos) => ({
+                produtos,
+                total: produtos.reduce((valor, el) => valor += el.preco * el.quantidade, 0)
+            })));
     }
 }

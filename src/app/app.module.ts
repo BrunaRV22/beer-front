@@ -17,7 +17,7 @@ import { CompraComponent } from './components/modal/compra/compra.component';
 import { CompraModule } from './components/modal/compra/compra.module';
 import { CompraService } from './services/compra.service';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { CompraEditarComponent } from './components/modal/compra-editar/compra-editar.component';
 
 registerLocaleData(localeBR, 'pt-BR', localeBRExtra);
 
@@ -54,7 +54,8 @@ registerLocaleData(localeBR, 'pt-BR', localeBRExtra);
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    CompraComponent
+    CompraComponent,
+    CompraEditarComponent
   ]
 })
 export class AppModule { }

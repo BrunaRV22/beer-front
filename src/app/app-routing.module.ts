@@ -25,9 +25,8 @@ const routes: Routes = [
       },
       {
         path: 'sacola',
-        loadChildren: () => import('./pages/sacola/sacola.module').then((m) => m.SacolaModule),
         runGuardsAndResolvers: 'always',
-        canActivate: [ SacolaActivatedService ]
+        loadChildren: () => import('./pages/sacola/sacola.module').then((m) => m.SacolaModule)
 
       }
     ]
@@ -40,11 +39,10 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    useHash: false
+    useHash: false,
+    enableTracing: true,
+    onSameUrlNavigation: 'reload'
   })],
-  exports: [RouterModule],
-  providers: [
-    SacolaActivatedService
-  ]
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }

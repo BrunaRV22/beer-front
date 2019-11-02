@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SacolaComponent } from './sacola.component';
 import { SacolaResolverService } from './sacola-resolver.service';
+import { SacolaActivatedService } from 'src/app/services/activated/sacola.activated.service';
 
 @NgModule({
     imports: [
@@ -12,6 +13,7 @@ import { SacolaResolverService } from './sacola-resolver.service';
                 path: '',
                 component: SacolaComponent,
                 runGuardsAndResolvers: 'always',
+                canActivate: [ SacolaActivatedService ],
                 resolve: {
                     sacola: SacolaResolverService
                 }
@@ -19,6 +21,9 @@ import { SacolaResolverService } from './sacola-resolver.service';
         ])
     ],
     declarations: [ SacolaComponent ],
-    providers: [ SacolaResolverService ]
+    providers: [
+        SacolaResolverService,
+        SacolaActivatedService
+     ]
 })
 export class SacolaModule {  }
