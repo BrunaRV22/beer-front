@@ -72,4 +72,10 @@ export class CompraService {
     totalItens() {
         return this.sacolaTotalRx;
     }
+
+    limparSacola() {
+        const sacola = this.sacola = [];
+        this.sacolaRx.next(sacola);
+        this.sacolaTotalRx.next(0);
+    }
 }

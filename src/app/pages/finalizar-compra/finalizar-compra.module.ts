@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { SacolaComponent } from './sacola.component';
+import { FinalizarCompraComponent } from './finalizar-compra.component';
 import { SacolaActivatedService } from 'src/app/services/activated/sacola.activated.service';
 import { SacolaResolverService } from 'src/app/services/resolver/sacola-resolver.service';
 
@@ -11,7 +11,7 @@ import { SacolaResolverService } from 'src/app/services/resolver/sacola-resolver
         RouterModule.forChild([
             {
                 path: '',
-                component: SacolaComponent,
+                component: FinalizarCompraComponent,
                 runGuardsAndResolvers: 'always',
                 canActivate: [ SacolaActivatedService ],
                 resolve: {
@@ -20,6 +20,6 @@ import { SacolaResolverService } from 'src/app/services/resolver/sacola-resolver
             }
         ])
     ],
-    declarations: [ SacolaComponent ]
+    declarations: [ FinalizarCompraComponent ]
 })
-export class SacolaModule {  }
+export class FinalizarCompraModule {  }

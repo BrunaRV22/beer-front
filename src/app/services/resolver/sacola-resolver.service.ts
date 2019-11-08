@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
 import { CompraService } from 'src/app/services/compra.service';
-import { groupBy, first, switchMap, mergeMap, toArray, reduce, map, last, take } from 'rxjs/operators';
+import { groupBy, switchMap, mergeMap, toArray, reduce, map, take } from 'rxjs/operators';
 import { from } from 'rxjs';
 import { Sacola } from 'src/app/model/produto';
 

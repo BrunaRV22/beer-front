@@ -1,0 +1,36 @@
+<div class="container">
+    <h1>Finalizar Compra (Passo 3-3)</h1>
+
+    <div class="row no-padding">
+        <div class="col-12">
+            <div class="card card-custom" *ngFor="let item of sacola.produtos">
+                <div class="card-header">Produtos</div>
+
+                <div class="card-body">
+                    <div class="d-block">
+                        <img [src]="item.foto" [alt]="item.nome" class="card-img-left">
+
+                        <div class="block-item">
+                            <div class="card-text">
+                                <div class="pull-left">{{ item.quantidade }}x {{ item.nome }}</div>
+                                <div class="pull-right">{{ item.preco * item.quantidade | currency: 'BRL' }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="d-block">
+                        <img [src]="item.foto" [alt]="item.nome" class="card-img-left">
+
+                        <div class="block-item">
+                            <div class="card-text">
+                                <div class="pull-left">{{ item.quantidade }}x {{ item.nome }}</div>
+                                <div class="pull-right">{{ item.preco * item.quantidade | currency: 'BRL' }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

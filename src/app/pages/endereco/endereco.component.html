@@ -1,0 +1,43 @@
+<div class="container">
+    <h1>Endereço (Passo 2-3)</h1>
+
+    <div class="row no-padding">
+        <div class="col-12">
+            <div class="card card-custom">
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item" *ngFor="let endereco of enderecos" [class.active]="endereco.active"
+                            (click)="selecionarEndereco(endereco)">
+                            {{ endereco.logradouro }}, {{ endereco.numero || '(Sem número)' }} - {{ endereco.bairro }},
+                            {{  endereco.cidade }} - {{ endereco.estado }}<ng-container *ngIf="endereco.active">
+                                [Selecionado]</ng-container>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <div class="pull-left">
+                        <button type="button" class="btn btn-warning" routerLink="/sacola">Voltar</button>
+                    </div>
+
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-danger" style="margin-right: 10px;"
+                            (click)="openModal(modalCancelar)">Cancelar</button>
+                        <button type="button" class="btn btn-primary" routerLink="/sacola/finalizar">Confirmar dados de compra</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #modalCancelar>
+    <div class="card-body">
+        <p>Deseja limpar os dados da sacola?</p>
+
+        <div class="pull-right">
+            <button type="button" class="btn btn-danger" (click)="redirecionarParaHome()"
+                style="margin-right: 10px;">Não</button>
+            <button type="button" class="btn btn-primary" (click)="limparComRedirecionar()">Sim</button>
+        </div>
+    </div>
+</ng-template>

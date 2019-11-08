@@ -1,0 +1,60 @@
+@import "../../../../node_modules/bootstrap/scss/functions";
+@import "../../../../node_modules/bootstrap/scss/variables";
+@import "../../../../node_modules/bootstrap/scss/mixins";
+
+h1 {
+    margin-bottom: 25px;
+}
+
+.card {
+    border-radius: 0px;
+}
+
+.card.card-custom {
+    margin-bottom: 5px;
+
+    .card-img-left,
+    .block-item {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .card-img-left {
+        width: 100px;
+        height: 100px;
+        object-fit: contain;
+        margin: 12px 0;
+    }
+
+    .block-item {
+        width: calc(100% - 100px);
+
+        .card-text {
+            font-size: 16px;
+            margin-bottom: 0px;
+            border: none;
+
+            @include media-breakpoint-up(sm) {
+                font-size: 26px;
+            }
+        }
+    }
+}
+
+.card.main {
+    .card-text {
+        padding: 10px 20px;
+        font-size: 22px;
+    }
+
+    .card-body {
+        .btn {
+            width: 100%;
+            margin-bottom: 5px;
+
+            &:last-of-type {
+                margin-bottom: 0px;
+            }
+        }
+    }
+}

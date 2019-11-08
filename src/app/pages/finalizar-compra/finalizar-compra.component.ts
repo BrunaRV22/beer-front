@@ -1,17 +1,16 @@
 import { Component } from '@angular/core';
 import { Sacola } from 'src/app/model/produto';
-import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Meta } from '@angular/platform-browser';
 import { CompraService } from 'src/app/services/compra.service';
 import { ModalService } from 'src/app/services/custom/modal/modal.service';
-import { CompraEditarComponent } from 'src/app/components/modal/compra-editar/compra-editar.component';
 
 @Component({
-    selector: 'app-sacola',
-    templateUrl: './sacola.component.html',
-    styleUrls: ['./sacola.component.scss']
+    selector: 'app-finalizar-compra',
+    templateUrl: './finalizar-compra.component.html',
+    styleUrls: ['./finalizar-compra.component.scss']
 })
-export class SacolaComponent {
+export class FinalizarCompraComponent {
     sacola: {
         produtos: Sacola[],
         total: number
@@ -37,18 +36,5 @@ export class SacolaComponent {
 
         route.data
             .subscribe((params) => this.sacola = params.sacola);
-    }
-
-    editar(item: Sacola) {
-        this.service.compraEditar(item, item.quantidade);
-        this.modal.open(CompraEditarComponent);
-
-        this.modal.onClose()
-            .subscribe(() => this.router.navigate(['/sacola']));
-    }
-
-    remover(item: Sacola) {
-        this.service.remover(item.id);
-        this.router.navigate(['/sacola']);
     }
 }

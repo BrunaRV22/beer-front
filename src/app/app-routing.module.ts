@@ -26,8 +26,23 @@ const routes: Routes = [
       {
         path: 'sacola',
         runGuardsAndResolvers: 'always',
-        loadChildren: () => import('./pages/sacola/sacola.module').then((m) => m.SacolaModule)
-
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            loadChildren: () => import('./pages/sacola/sacola.module').then((m) => m.SacolaModule)
+          },
+          {
+            path: 'endereco',
+            pathMatch: 'full',
+            loadChildren: () => import('./pages/endereco/endereco.module').then((m) => m.EnderecoModule)
+          },
+          {
+            path: 'finalizar',
+            pathMatch: 'full',
+            loadChildren: () => import('./pages/finalizar-compra/finalizar-compra.module').then((m) => m.FinalizarCompraModule)
+          }
+        ]
       }
     ]
   },
@@ -40,7 +55,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
     useHash: false,
-    enableTracing: true,
+    enableTracing: false,
     onSameUrlNavigation: 'reload'
   })],
   exports: [RouterModule]
