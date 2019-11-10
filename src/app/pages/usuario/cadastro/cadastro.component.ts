@@ -1,6 +1,7 @@
 import { Component, Renderer2, Inject, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
     selector: 'app-cadastro',
@@ -14,7 +15,9 @@ export class CadastroComponent implements OnInit {
 
     constructor(
         readonly renderer: Renderer2,
-        @Inject(DOCUMENT) readonly document: Document
+        @Inject(DOCUMENT) readonly document: Document,
+
+        private readonly service: UsuarioService
     ) {
         renderer.addClass(document.body, 'bg-image');
     }
@@ -38,7 +41,9 @@ export class CadastroComponent implements OnInit {
 
     cadastrar() {
         this.submitted = true;
-        console.log(this.form);
-        console.log(this.form.errors);
+
+        if (this.form.valid) {
+            this.service.cadastro(this.form.value);
+        }
     }
 }
