@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Produto } from 'src/app/model/produto';
 import { Title } from '@angular/platform-browser';
 import { CompraComponent } from 'src/app/components/modal/compra/compra.component';
 import { ModalService } from 'src/app/services/custom/modal/modal.service';
 import { CompraService } from 'src/app/services/compra.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -18,8 +19,13 @@ export class HomeComponent {
     readonly route: ActivatedRoute,
     readonly title: Title,
     private readonly modalService: ModalService,
-    private readonly comprarService: CompraService
+    private readonly comprarService: CompraService,
+
+    readonly renderer: Renderer2,
+    @Inject(DOCUMENT) readonly document: Document
   ) {
+    this.renderer.addClass(document.body, 'bg-image');
+
     route.data
       .subscribe((params) => {
         if (params.title) {

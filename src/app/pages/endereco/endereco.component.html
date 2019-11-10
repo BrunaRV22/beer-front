@@ -4,6 +4,21 @@
     <div class="row no-padding">
         <div class="col-12">
             <div class="card card-custom">
+                <div class="card-header">
+                    <div class="d-flex align-items-center">
+                        <div class="d-block w-50">
+                            <div class="d-inline-block">
+                                <i class="fa fa-location-arrow" aria-hidden="true"></i>
+                                Endereços cadastrados
+                            </div>
+                        </div>
+                        <div class="d-block w-50" style="position: relative;">
+                            <div class="pull-right">
+                                <button type="button" class="btn btn-primary">Adicionar endereço</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="card-body">
                     <ul class="list-group">
                         <li class="list-group-item" *ngFor="let endereco of enderecos" [class.active]="endereco.active"
@@ -22,7 +37,8 @@
                     <div class="pull-right">
                         <button type="button" class="btn btn-danger" style="margin-right: 10px;"
                             (click)="openModal(modalCancelar)">Cancelar</button>
-                        <button type="button" class="btn btn-primary" routerLink="/sacola/finalizar">Confirmar dados de compra</button>
+                        <button type="button" class="btn btn-primary" (click)="finalizar()">Confirmar dados de
+                            compra</button>
                     </div>
                 </div>
             </div>

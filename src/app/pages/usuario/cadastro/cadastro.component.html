@@ -1,0 +1,90 @@
+<div class="full-container">
+    <div class="d-flex h-100 align-items-center">
+        <div class="container">
+            <form class="row" (submit)="cadastrar()" [formGroup]="form">
+                <div class="form-group col-lg-8">
+                    <label class="text-white" for="nome">Nome completo</label>
+                    <input type="text" class="form-control" name="nome" id="nome" formControlName="nome"
+                        [class.is-valid]="submitted && form.get('nome').valid"
+                        [class.is-invalid]="submitted && form.get('nome').invalid">
+
+                    <div class="invalid-feedback" *ngIf="submitted">
+                        <ng-container *ngIf="form.get('nome').getError('required')">
+                            Nome precisa ser inserido
+                        </ng-container>
+                    </div>
+                </div>
+
+                <div class="form-group col-lg-4">
+                    <label class="text-white" for="cpf">CPF</label>
+                    <input type="text" class="form-control" name="cpf" id="cpf" mask="000.000.000-00"
+                        formControlName="cpf" [class.is-valid]="submitted && form.get('cpf').valid"
+                        [class.is-invalid]="submitted && form.get('cpf').invalid">
+
+                    <div class="invalid-feedback" *ngIf="submitted">
+                        <ng-container *ngIf="form.get('cpf').getError('required')">
+                            CPF precisa ser inserido
+                        </ng-container>
+
+                        <ng-container *ngIf="form.get('cpf').getError('minlength')">
+                            CPF precisa ter 11 dígitos, atualmente ele tem
+                            <ng-container [ngPlural]="form.get('cpf').getError('minlength').actualLength">
+                                <ng-template ngPluralCase="=0">nenhum dígito</ng-template>
+                                <ng-template ngPluralCase="=1">um dígito</ng-template>
+                                <ng-template ngPluralCase="other">
+                                    {{ form.get('cpf').getError('minlength').actualLength }} dígitos</ng-template>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+                </div>
+
+                <div class="form-group col-lg-6">
+                    <label class="text-white" for="email">E-mail</label>
+                    <input type="email" class="form-control" name="email" id="email" formControlName="email"
+                        [class.is-valid]="submitted && form.get('email').valid"
+                        [class.is-invalid]="submitted && form.get('email').invalid">
+
+                    <div class="invalid-feedback" *ngIf="submitted">
+                        <ng-container *ngIf="form.get('email').getError('required')">
+                            E-mail precisa ser inserido
+                        </ng-container>
+
+                        <ng-container *ngIf="form.get('email').getError('email')">
+                            E-mail não é válido
+                        </ng-container>
+                    </div>
+                </div>
+
+                <div class="form-group col-lg-6">
+                    <label class="text-white" for="senha">Senha</label>
+                    <input type="password" class="form-control" name="senha" id="senha" formControlName="senha"
+                        [class.is-valid]="submitted && form.get('senha').valid"
+                        [class.is-invalid]="submitted && form.get('senha').invalid">
+
+                    <div class="invalid-feedback" *ngIf="submitted">
+                        <ng-container *ngIf="form.get('senha').getError('required')">
+                            Senha precisa ser inserida
+                        </ng-container>
+
+                        <ng-container *ngIf="form.get('senha').getError('minlength')">
+                            Senha precisa ter no mínimo 8 dígitos, atualmente ela tem
+                            <ng-container [ngPlural]="form.get('senha').getError('minlength').actualLength">
+                                <ng-template ngPluralCase="=0">nenhum dígito</ng-template>
+                                <ng-template ngPluralCase="=1">um dígito</ng-template>
+                                <ng-template ngPluralCase="other">
+                                    {{ form.get('senha').getError('minlength').actualLength }} dígitos</ng-template>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-danger" style="margin-right: 10px;">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Salvar dados</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

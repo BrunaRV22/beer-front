@@ -58,3 +58,17 @@ h1 {
         }
     }
 }
+
+.price-block {
+    height: 80px;
+    position: relative;
+    margin: 10px 0 20px;
+
+    .price {
+        font-size: 40px;
+
+        span {
+            font-size: 20px;
+        }
+    }
+}

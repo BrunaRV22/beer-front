@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Meta } from '@angular/platform-browser';
 import { CompraService } from 'src/app/services/compra.service';
 import { ModalService } from 'src/app/services/custom/modal/modal.service';
+import { Endereco } from 'src/app/model/endereco';
 
 @Component({
     selector: 'app-finalizar-compra',
@@ -15,6 +16,8 @@ export class FinalizarCompraComponent {
         produtos: Sacola[],
         total: number
     };
+
+    endereco: Endereco;
 
     constructor(
         readonly route: ActivatedRoute,
@@ -36,5 +39,7 @@ export class FinalizarCompraComponent {
 
         route.data
             .subscribe((params) => this.sacola = params.sacola);
+
+        this.endereco = this.service.getEndereco();
     }
 }

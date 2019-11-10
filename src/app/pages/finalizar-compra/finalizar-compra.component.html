@@ -3,22 +3,10 @@
 
     <div class="row no-padding">
         <div class="col-12">
-            <div class="card card-custom" *ngFor="let item of sacola.produtos">
+            <div class="card card-custom">
                 <div class="card-header">Produtos</div>
 
-                <div class="card-body">
-                    <div class="d-block">
-                        <img [src]="item.foto" [alt]="item.nome" class="card-img-left">
-
-                        <div class="block-item">
-                            <div class="card-text">
-                                <div class="pull-left">{{ item.quantidade }}x {{ item.nome }}</div>
-                                <div class="pull-right">{{ item.preco * item.quantidade | currency: 'BRL' }}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
+                <div class="card-body" *ngFor="let item of sacola.produtos">
                     <div class="d-block">
                         <img [src]="item.foto" [alt]="item.nome" class="card-img-left">
 
@@ -31,6 +19,35 @@
                     </div>
                 </div>
             </div>
+
+            <div class="card card-custom">
+                <div class="card-header">Endereço</div>
+
+                <div class="card-body">
+                    <p>
+                        {{ endereco.logradouro }}, {{ endereco.numero }} - {{ endereco.bairro }}, {{ endereco.cidade }}
+                        - {{ endereco.estado }}, {{ endereco.cep }}
+                        <ng-container *ngIf="endereco.complemento"> - {{ endereco.complemento }}</ng-container>
+                    </p>
+                    <p><strong>Frete: </strong>Grátis</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-block price-block">
+        <div class="pull-right">
+            <div class="text-right">Valor Total</div>
+            <div class="price">
+                <span>R$</span> {{ sacola.total | currency: '':'' }}
+            </div>
+        </div>
+    </div>
+
+    <div class="d-block" style="margin: 10px 0 30px;padding-bottom: 30px;">
+        <div class="pull-right">
+            <button type="button" class="btn btn-danger" style="margin-right: 10px;">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Finalizar</button>
         </div>
     </div>
 </div>

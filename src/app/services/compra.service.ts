@@ -2,10 +2,13 @@ import { Injectable } from '@angular/core';
 import { Produto } from '../model/produto';
 import { BehaviorSubject } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
+import { Endereco } from '../model/endereco';
 
 @Injectable({ providedIn: 'root' })
 export class CompraService {
     private sacola: Produto[];
+    private endereco: Endereco;
+
     private produto: BehaviorSubject<Produto>;
 
     private sacolaRx: BehaviorSubject<Produto[]>;
@@ -19,6 +22,14 @@ export class CompraService {
         this.sacolaTotalRx = new BehaviorSubject(0);
 
         this.sacola = [];
+    }
+
+    adicionarEndereco(endereco: Endereco) {
+        this.endereco = endereco;
+    }
+
+    getEndereco() {
+        return this.endereco;
     }
 
     comprar(produto: Produto) {
@@ -77,5 +88,7 @@ export class CompraService {
         const sacola = this.sacola = [];
         this.sacolaRx.next(sacola);
         this.sacolaTotalRx.next(0);
+
+        this.endereco = null;
     }
 }

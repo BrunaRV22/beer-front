@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DefaultComponent } from './template/default/default.component';
 import { SacolaActivatedService } from './services/activated/sacola.activated.service';
+import { EnderecoActivatedService } from './services/activated/endereco.activated.service';
 
 
 const routes: Routes = [
@@ -35,12 +36,23 @@ const routes: Routes = [
           {
             path: 'endereco',
             pathMatch: 'full',
+            runGuardsAndResolvers: 'always',
+            canActivate: [ EnderecoActivatedService ],
             loadChildren: () => import('./pages/endereco/endereco.module').then((m) => m.EnderecoModule)
           },
           {
             path: 'finalizar',
             pathMatch: 'full',
             loadChildren: () => import('./pages/finalizar-compra/finalizar-compra.module').then((m) => m.FinalizarCompraModule)
+          }
+        ]
+      },
+      {
+        path: 'usuario',
+        children: [
+          {
+            path: 'cadastro',
+            loadChildren: () => import('./pages/usuario/cadastro/cadastro.module').then((m) => m.CadastroModule)
           }
         ]
       }

@@ -20,6 +20,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { CompraEditarComponent } from './components/modal/compra-editar/compra-editar.component';
 import { SacolaResolverService } from './services/resolver/sacola-resolver.service';
 import { SacolaActivatedService } from './services/activated/sacola.activated.service';
+import { EnderecoActivatedService } from './services/activated/endereco.activated.service';
 
 registerLocaleData(localeBR, 'pt-BR', localeBRExtra);
 
@@ -55,7 +56,8 @@ registerLocaleData(localeBR, 'pt-BR', localeBRExtra);
     },
 
     SacolaResolverService,
-    SacolaActivatedService
+    SacolaActivatedService,
+    EnderecoActivatedService
   ],
   bootstrap: [AppComponent],
   entryComponents: [
