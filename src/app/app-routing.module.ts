@@ -48,11 +48,15 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'usuario',
+        path: 'cadastro',
         children: [
           {
-            path: 'cadastro',
+            path: 'usuario',
             loadChildren: () => import('./pages/usuario/cadastro/cadastro.module').then((m) => m.CadastroModule)
+          },
+          {
+            path: 'endereco',
+            loadChildren: () => import('./pages/novo-endereco/novo-endereco.module').then((m) => m.NovoEnderecoModule)
           }
         ]
       }

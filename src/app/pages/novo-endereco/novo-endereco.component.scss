@@ -1,0 +1,17 @@
+
+.title {
+    margin: 60px 0 40px;
+    color: white;
+}
+
+label {
+    color: white;
+}
+
+.btn {
+    margin-right: 5px;
+
+    &:last-of-type {
+        margin-right: 0px;
+    }
+}

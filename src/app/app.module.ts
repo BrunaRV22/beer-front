@@ -21,6 +21,8 @@ import { CompraEditarComponent } from './components/modal/compra-editar/compra-e
 import { SacolaResolverService } from './services/resolver/sacola-resolver.service';
 import { SacolaActivatedService } from './services/activated/sacola.activated.service';
 import { EnderecoActivatedService } from './services/activated/endereco.activated.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 registerLocaleData(localeBR, 'pt-BR', localeBRExtra);
 
@@ -30,6 +32,10 @@ registerLocaleData(localeBR, 'pt-BR', localeBRExtra);
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      newestOnTop: true
+    }),
     AppRoutingModule,
     HttpClientModule,
 

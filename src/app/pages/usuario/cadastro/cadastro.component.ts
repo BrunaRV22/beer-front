@@ -2,6 +2,7 @@ import { Component, Renderer2, Inject, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-cadastro',
@@ -10,14 +11,13 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class CadastroComponent implements OnInit {
     form: FormGroup;
-
     submitted = false;
 
     constructor(
         readonly renderer: Renderer2,
         @Inject(DOCUMENT) readonly document: Document,
-
-        private readonly service: UsuarioService
+        private readonly service: UsuarioService,
+        private readonly toastr: ToastrService
     ) {
         renderer.addClass(document.body, 'bg-image');
     }
@@ -43,7 +43,15 @@ export class CadastroComponent implements OnInit {
         this.submitted = true;
 
         if (this.form.valid) {
-            this.service.cadastro(this.form.value);
+            this.service.cadastro(this.form.value)
+                .subscribe(
+                    () => {
+                        this.toastr.success('Cadastro efetuado com sucesso!<br>Agora, cadastre o endereço para entrega', 'Dados salvos', {
+                            enableHtml: true
+                        });
+                    },
+                    () => this.toastr.error('Falha ao salvar dados, tente novamente mais tarde', 'Falha ao salvar dados')
+                );
         }
     }
 }

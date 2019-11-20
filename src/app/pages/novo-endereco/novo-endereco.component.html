@@ -1,0 +1,116 @@
+<div class="container">
+    <h2 class="title">Novo endereço</h2>
+
+    <form class="row" [formGroup]="endereco" (submit)="salvar()">
+        <div class="form-group col-3">
+            <label for="tipo">Tipo</label>
+            <select name="tipo" id="tipo" class="form-control" formControlName="tipo"
+                [class.is-valid]="submitted && endereco.get('tipo').valid"
+                [class.is-invalid]="submitted && endereco.get('tipo').invalid">
+                <option [ngValue]="null">Selecione um tipo</option>
+                <option [ngValue]="'Residencial'">Residencial</option>
+                <option [ngValue]="'Comercial'">Comercial</option>
+            </select>
+
+            <div class="invalid-feedback" *ngIf="submitted">
+                <ng-container *ngIf="endereco.get('tipo').hasError('required')">Tipo é requerido</ng-container>
+            </div>
+        </div>
+
+        <div class="form-group col-7">
+            <label for="logradouro">Logradouro</label>
+            <input type="text" id="logradouro" name="logradouro" class="form-control" formControlName="logradouro"
+                [class.is-valid]="submitted && endereco.get('logradouro').valid"
+                [class.is-invalid]="submitted && endereco.get('logradouro').invalid">
+
+            <div class="invalid-feedback" *ngIf="submitted">
+                <ng-container *ngIf="endereco.get('logradouro').hasError('required')">Logradouro é requerido
+                </ng-container>
+            </div>
+        </div>
+
+        <div class="form-group col-2">
+            <label for="numero">Número</label>
+            <input type="text" id="numero" name="numero" class="form-control" formControlName="numero"
+                [class.is-valid]="submitted && endereco.get('numero').valid"
+                [class.is-invalid]="submitted && endereco.get('numero').invalid">
+
+            <div class="invalid-feedback" *ngIf="submitted">
+                <ng-container *ngIf="endereco.get('numero').hasError('required')">Número é requerido</ng-container>
+            </div>
+        </div>
+
+        <div class="form-group col-5">
+            <label for="bairro">Bairro</label>
+            <input type="text" id="bairro" name="bairro" class="form-control" formControlName="bairro"
+                [class.is-valid]="submitted && endereco.get('bairro').valid"
+                [class.is-invalid]="submitted && endereco.get('bairro').invalid">
+
+            <div class="invalid-feedback" *ngIf="submitted">
+                <ng-container *ngIf="endereco.get('bairro').hasError('required')">Bairro é requerido</ng-container>
+            </div>
+        </div>
+
+        <div class="form-group col-5">
+            <label for="cidade">Cidade</label>
+            <input type="text" id="cidade" name="cidade" class="form-control" formControlName="cidade"
+                [class.is-valid]="submitted && endereco.get('cidade').valid"
+                [class.is-invalid]="submitted && endereco.get('cidade').invalid">
+
+
+            <div class="invalid-feedback" *ngIf="submitted">
+                <ng-container *ngIf="endereco.get('cidade').hasError('required')">Cidade é requerido</ng-container>
+            </div>
+        </div>
+
+        <div class="form-group col-2">
+            <label for="estado">UF</label>
+            <select name="estado" id="estado" class="form-control" formControlName="estado"
+                [class.is-valid]="submitted && endereco.get('estado').valid"
+                [class.is-invalid]="submitted && endereco.get('estado').invalid">
+                <option>Selecione um estado</option>
+                <option [ngValue]="'SP'">SP</option>
+                <option [ngValue]="'RJ'">RJ</option>
+            </select>
+
+            <div class="invalid-feedback" *ngIf="submitted">
+                <ng-container *ngIf="endereco.get('estado').hasError('required')">Estado é requerido</ng-container>
+            </div>
+        </div>
+
+        <div class="form-group col-9">
+            <label for="complemento">Complemento</label>
+            <input type="text" id="complemento" name="complemento" class="form-control" formControlName="complemento"
+                [class.is-valid]="submitted && endereco.get('complemento').valid"
+                [class.is-invalid]="submitted && endereco.get('complemento').invalid">
+
+            <div class="invalid-feedback" *ngIf="submitted">
+                <ng-container *ngIf="endereco.get('complemento').hasError('required')">Complemento é requerido
+                </ng-container>
+            </div>
+        </div>
+
+        <div class="form-group col-3">
+            <label for="cep">CEP</label>
+            <input type="text" id="cep" name="cep" class="form-control" mask="00000-000" formControlName="cep"
+                [class.is-valid]="submitted && endereco.get('cep').valid"
+                [class.is-invalid]="submitted && endereco.get('cep').invalid">
+
+            <div class="invalid-feedback" *ngIf="submitted">
+                <ng-container *ngIf="endereco.get('cep').hasError('required')">CEP é requerido</ng-container>
+                <ng-container *ngIf="endereco.get('cep').hasError('minlength')">CEP precisa ter 8 dígitos</ng-container>
+
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="d-block">
+                <div class="pull-right">
+                    <button type="button" class="btn btn-secondary">Adicionar novo</button>
+                    <button type="submit" class="btn btn-primary">Concluir</button>
+                    <button type="button" class="btn btn-danger">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
