@@ -1,7 +1,7 @@
 
 export class Endereco {
     id?: string;
-    tipo: string;
+    tipo: 'Residencial' | 'Comercial';
 
     logradouro: string;
     numero: string;

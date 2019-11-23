@@ -5,7 +5,6 @@ export class AuthService {
     get getAuth() {
         return {
             authorization: localStorage.getItem('A'),
-            image: localStorage.getItem('img'),
             email: localStorage.getItem('mail'),
             usuario: localStorage.getItem('user')
         };
@@ -21,10 +20,6 @@ export class AuthService {
         if (usuario) {
             localStorage.setItem('user', usuario);
         }
-
-        if (image) {
-            localStorage.setItem('img', image);
-        }
     }
 
     isLogged() {
@@ -36,6 +31,5 @@ export class AuthService {
         localStorage.removeItem('A');
         localStorage.removeItem('mail');
         localStorage.removeItem('user');
-        localStorage.removeItem('img');
     }
 }

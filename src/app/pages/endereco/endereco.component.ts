@@ -13,6 +13,7 @@ export class EnderecoComponent {
     enderecos: CompraEndereco[] = [
         {
             active: true,
+            tipo: 'Residencial',
             logradouro: 'Rua Nuporanga',
             numero: '147',
             bairro: 'Vila Perracine',
@@ -23,6 +24,7 @@ export class EnderecoComponent {
         },
         {
             active: false,
+            tipo: 'Residencial',
             logradouro: 'Rua Nuporanga',
             numero: '147',
             bairro: 'Vila Perracine',
@@ -33,6 +35,7 @@ export class EnderecoComponent {
         },
         {
             active: false,
+            tipo: 'Comercial',
             logradouro: 'Rua Nuporanga',
             numero: '147',
             bairro: 'Vila Perracine',

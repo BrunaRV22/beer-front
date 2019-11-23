@@ -28,7 +28,7 @@ export class LoginComponent implements OnDestroy {
             .subscribe(() => {
                 this.message = null;
                 alert('Usuário Logado no sistema!');
-                this.router.navigate(['/home'])
+                this.router.navigate(['/'])
                     .then(() => {
                         this.subscription = null;
                         this.login.senha = null;

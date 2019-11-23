@@ -12,6 +12,8 @@ export class EnderecoService extends Global {
     }
 
     adicionar(endereco: Endereco) {
-        return this.http.post(`${this.url}/endereco`, endereco);
+        return this.http.post(`${this.url}/endereco`, endereco, {
+            withCredentials: true
+        });
     }
 }

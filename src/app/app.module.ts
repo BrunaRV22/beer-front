@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { ApiInterceptorService } from './services/api-interceptor.service';
 import { AuthService } from './services/auth.service';
 import { TokenService } from './services/token.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LocationStrategy, PathLocationStrategy, APP_BASE_HREF } from '@angular/common';
 
 import { registerLocaleData } from '@angular/common';
@@ -59,6 +59,11 @@ registerLocaleData(localeBR, 'pt-BR', localeBRExtra);
     {
       provide: LOCALE_ID,
       useValue: 'pt-BR'
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiInterceptorService,
+      multi: true
     },
 
     SacolaResolverService,

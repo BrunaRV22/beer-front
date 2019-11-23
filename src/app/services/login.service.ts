@@ -23,8 +23,7 @@ export class LoginService extends Global {
                 this.auth.setAuth(
                     res.headers.get('Authorization'),
                     res.body.email,
-                    res.body.usuario,
-                    res.body.imagem
+                    res.body.usuario
                 );
             }),
             catchError((err) => {
