@@ -19,8 +19,10 @@ export class CompraEndereco extends Endereco {
 
     constructor(e: Endereco) {
         super();
+        this.active = false;
 
         if (e) {
+            this.id = (e as any)._id || e.id || null;
             this.logradouro = e.logradouro;
             this.numero = e.numero;
             this.bairro = e.bairro;

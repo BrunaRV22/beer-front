@@ -1,8 +1,9 @@
-import { Component, Renderer2 } from '@angular/core';
+import { Component, Renderer2, Inject } from '@angular/core';
 import { ModalService } from 'src/app/services/custom/modal/modal.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CompraService } from 'src/app/services/compra.service';
 import { CompraEndereco } from 'src/app/model/endereco';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
     selector: 'app-endereco',
@@ -10,48 +11,20 @@ import { CompraEndereco } from 'src/app/model/endereco';
     styleUrls: ['./endereco.component.scss']
 })
 export class EnderecoComponent {
-    enderecos: CompraEndereco[] = [
-        {
-            active: true,
-            tipo: 'Residencial',
-            logradouro: 'Rua Nuporanga',
-            numero: '147',
-            bairro: 'Vila Perracine',
-            cidade: 'Poá',
-            estado: 'SP',
-            complemento: null,
-            cep: '08552-500'
-        },
-        {
-            active: false,
-            tipo: 'Residencial',
-            logradouro: 'Rua Nuporanga',
-            numero: '147',
-            bairro: 'Vila Perracine',
-            cidade: 'Poá',
-            estado: 'SP',
-            complemento: null,
-            cep: '12321-233'
-        },
-        {
-            active: false,
-            tipo: 'Comercial',
-            logradouro: 'Rua Nuporanga',
-            numero: '147',
-            bairro: 'Vila Perracine',
-            cidade: 'Poá',
-            estado: 'SP',
-            complemento: null,
-            cep: '17373-182'
-        }
-    ];
+    enderecos: CompraEndereco[];
 
     constructor(
+        readonly route: ActivatedRoute,
         private readonly renderer: Renderer2,
         private readonly modal: ModalService,
         private readonly service: CompraService,
-        private readonly router: Router
-    ) { }
+        private readonly router: Router,
+
+        @Inject(DOCUMENT) readonly document: Document
+      ) {
+        this.renderer.addClass(document.body, 'bg-image');
+        route.data.subscribe((params) => this.enderecos = params.enderecos);
+    }
 
     selecionarEndereco(endereco: any) {
         this.enderecos.forEach((e) => e.active = false);

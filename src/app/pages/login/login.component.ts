@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -9,14 +9,17 @@ import { Subscription } from 'rxjs';
     styleUrls: [ './login.component.scss' ]
 })
 export class LoginComponent implements OnDestroy {
+    navigate: string;
     subscription: Subscription;
     login: { email: string, senha: string };
     message: string;
 
     constructor(
         private readonly service: LoginService,
-        private readonly router: Router
+        private readonly router: Router,
+        readonly route: ActivatedRoute
     ) {
+        route.queryParams.subscribe((params) => this.navigate = params.navigate || null);
         this.login = {
             email: null,
             senha: null
@@ -27,8 +30,7 @@ export class LoginComponent implements OnDestroy {
         this.subscription = this.service.loginIn(this.login.email, this.login.senha)
             .subscribe(() => {
                 this.message = null;
-                alert('Usuário Logado no sistema!');
-                this.router.navigate(['/'])
+                this.router.navigate([this.navigate || '/'])
                     .then(() => {
                         this.subscription = null;
                         this.login.senha = null;

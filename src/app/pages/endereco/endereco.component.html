@@ -24,8 +24,8 @@
                         <li class="list-group-item" *ngFor="let endereco of enderecos" [class.active]="endereco.active"
                             (click)="selecionarEndereco(endereco)">
                             {{ endereco.logradouro }}, {{ endereco.numero || '(Sem número)' }} - {{ endereco.bairro }},
-                            {{  endereco.cidade }} - {{ endereco.estado }}<ng-container *ngIf="endereco.active">
-                                [Selecionado]</ng-container>
+                            {{  endereco.cidade }} - {{ endereco.estado }}
+                            <ng-container *ngIf="endereco.complemento"> - ({{ endereco.complemento }})</ng-container>
                         </li>
                     </ul>
                 </div>
