@@ -3,6 +3,8 @@ import { DOCUMENT } from '@angular/common';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router, ActivatedRoute } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'app-cadastro',
@@ -12,14 +14,18 @@ import { ToastrService } from 'ngx-toastr';
 export class CadastroComponent implements OnInit {
     form: FormGroup;
     submitted = false;
+    navigate: string;
 
     constructor(
         readonly renderer: Renderer2,
         @Inject(DOCUMENT) readonly document: Document,
         private readonly service: UsuarioService,
-        private readonly toastr: ToastrService
+        private readonly toastr: ToastrService,
+        private readonly router: Router,
+        readonly route: ActivatedRoute
     ) {
         renderer.addClass(document.body, 'bg-image');
+        route.queryParams.subscribe((params) => this.navigate = params.navigate);
     }
 
     ngOnInit() {
@@ -49,8 +55,20 @@ export class CadastroComponent implements OnInit {
                         this.toastr.success('Cadastro efetuado com sucesso!<br>Agora, cadastre o endereço para entrega', 'Dados salvos', {
                             enableHtml: true
                         });
+
+                        this.router.navigate([this.navigate || '/']);
                     },
-                    () => this.toastr.error('Falha ao salvar dados, tente novamente mais tarde', 'Falha ao salvar dados')
+                    (error) => {
+                        if (error instanceof HttpErrorResponse) {
+                            if (error.status === 409) {
+                                this.toastr.warning('Usuário já cadastrado, caso tenha esquecido da senha, clique em esqueceu a senha.',
+                                    'Usuário cadastrado');
+                                return;
+                            }
+                        }
+
+                        this.toastr.error('Falha ao salvar dados, tente novamente mais tarde', 'Falha ao salvar dados')
+                    }
                 );
         }
     }

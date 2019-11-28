@@ -3,9 +3,11 @@ import { Produto } from '../model/produto';
 import { BehaviorSubject } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { Endereco } from '../model/endereco';
+import { Global } from './global';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
-export class CompraService {
+export class CompraService extends Global {
     private sacola: Produto[];
     private endereco: Endereco;
 
@@ -16,7 +18,10 @@ export class CompraService {
 
     private quantidade: number;
 
-    constructor() {
+    constructor(
+        private readonly http: HttpClient
+    ) {
+        super();
         this.produto = new BehaviorSubject(null);
         this.sacolaRx = new BehaviorSubject(null);
         this.sacolaTotalRx = new BehaviorSubject(0);
@@ -90,5 +95,11 @@ export class CompraService {
         this.sacolaTotalRx.next(0);
 
         this.endereco = null;
+    }
+
+    finalizarCompra(data: { id_endereco: string, produtos: { id: string, quantidade: number }[] }) {
+        return this.http.post(`${this.url}/compra`, data, {
+            withCredentials: true
+        });
     }
 }

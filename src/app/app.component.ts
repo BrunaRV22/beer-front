@@ -8,8 +8,5 @@ import { CompraService } from './services/compra.service';
 export class AppComponent {
   constructor(
     readonly compra: CompraService
-  ) {
-    compra.totalItens()
-      .subscribe((itens) => console.log('Total', itens));
-  }
+  ) {  }
 }

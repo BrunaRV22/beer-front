@@ -22,7 +22,7 @@
               Logar no sistema
             </button>
             <div class="pull-right">
-              <button type="button" class="btn btn-warning" routerLink="/cadastro/usuario">Cadastre-se</button>
+              <button type="button" class="btn btn-warning" [routerLink]="['/cadastro', 'usuario']" preserveQueryParams>Cadastre-se</button>
             </div>
           </div>
           <div *ngIf="message" class="text-danger">{{ message }}</div>

@@ -5,6 +5,7 @@ import { Meta } from '@angular/platform-browser';
 import { CompraService } from 'src/app/services/compra.service';
 import { ModalService } from 'src/app/services/custom/modal/modal.service';
 import { Endereco } from 'src/app/model/endereco';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-finalizar-compra',
@@ -24,7 +25,8 @@ export class FinalizarCompraComponent {
         readonly meta: Meta,
         private readonly service: CompraService,
         private readonly router: Router,
-        private readonly modal: ModalService
+        private readonly modal: ModalService,
+        private readonly toaster: ToastrService
     ) {
         meta.addTags([
             {
@@ -41,5 +43,19 @@ export class FinalizarCompraComponent {
             .subscribe((params) => this.sacola = params.sacola);
 
         this.endereco = this.service.getEndereco();
+    }
+
+    finalizar() {
+        const data = {
+            id_endereco: this.endereco.id,
+            produtos: [...this.sacola.produtos.map(({ id, quantidade }) => ({ id, quantidade }))]
+        };
+
+        this.service.finalizarCompra(data)
+            .subscribe(
+                () => this.toaster.success('Compra efetuada com sucesso, aguarde a chegada do produto.', 'Dados salvos'),
+                // tslint:disable-next-line: max-line-length
+                () => this.toaster.error('Falha ao tentar efetuar a compra, tente novamente e caso o erro persista, tente novamente mais tarde', 'Falha ao salvar dados')
+            );
     }
 }

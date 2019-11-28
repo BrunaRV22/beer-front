@@ -39,6 +39,10 @@ export class EnderecoComponent {
         this.modal.close();
     }
 
+    inactive() {
+        return this.enderecos.find((e) => e.active) === undefined;
+    }
+
     finalizar() {
         const endereco = this.enderecos.find((e) => e.active);
 
