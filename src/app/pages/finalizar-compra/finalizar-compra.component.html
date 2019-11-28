@@ -47,7 +47,7 @@
     <div class="d-block" style="margin: 10px 0 30px;padding-bottom: 30px;">
         <div class="pull-right">
             <button type="button" class="btn btn-danger" style="margin-right: 10px;" routerLink="/">Cancelar</button>
-            <button type="button" class="btn btn-primary" (click)="finalizar()">Finalizar</button>
+            <button type="button" class="btn btn-primary" (click)="finalizar()" [disabled]="submitted">Finalizar</button>
         </div>
     </div>
 </div>

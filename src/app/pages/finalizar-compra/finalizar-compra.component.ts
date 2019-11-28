@@ -13,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
     styleUrls: ['./finalizar-compra.component.scss']
 })
 export class FinalizarCompraComponent {
+    submitted: boolean;
     sacola: {
         produtos: Sacola[],
         total: number
@@ -46,6 +47,7 @@ export class FinalizarCompraComponent {
     }
 
     finalizar() {
+        this.submitted = true;
         const data = {
             id_endereco: this.endereco.id,
             produtos: [...this.sacola.produtos.map(({ id, quantidade }) => ({ id, quantidade }))]
@@ -53,9 +55,15 @@ export class FinalizarCompraComponent {
 
         this.service.finalizarCompra(data)
             .subscribe(
-                () => this.toaster.success('Compra efetuada com sucesso, aguarde a chegada do produto.', 'Dados salvos'),
-                // tslint:disable-next-line: max-line-length
-                () => this.toaster.error('Falha ao tentar efetuar a compra, tente novamente e caso o erro persista, tente novamente mais tarde', 'Falha ao salvar dados')
+                () => {
+                    this.toaster.success('Compra efetuada com sucesso, aguarde a chegada do produto.', 'Dados salvos');
+                    this.service.limparSacola();
+                },
+                () => {
+                    // tslint:disable-next-line: max-line-length
+                    this.toaster.error('Falha ao tentar efetuar a compra, tente novamente e caso o erro persista, tente novamente mais tarde', 'Falha ao salvar dados');
+                    this.submitted = false;
+                }
             );
     }
 }
