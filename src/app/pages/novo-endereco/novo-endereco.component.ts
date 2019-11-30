@@ -6,6 +6,7 @@ import { filter } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { EnderecoService } from 'src/app/services/endereco.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ImagesService } from 'src/app/services/images.service';
 
 @Component({
     selector: 'app-novo-endereco',
@@ -19,15 +20,14 @@ export class NovoEnderecoComponent implements OnInit {
 
     constructor(
         readonly meta: Meta,
-        readonly renderer: Renderer2,
-        @Inject(DOCUMENT) readonly document: Document,
         private readonly toastr: ToastrService,
         private readonly service: EnderecoService,
         private readonly router: Router,
-        readonly route: ActivatedRoute
+        readonly route: ActivatedRoute,
+        readonly image: ImagesService
     ) {
+        image.setImage();
         route.queryParams.subscribe((params) => this.navigate = params.navigate);
-        this.renderer.addClass(document.body, 'bg-image');
         meta.addTags([
             {
                 name: 'robots',

@@ -5,6 +5,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ImagesService } from 'src/app/services/images.service';
 
 @Component({
     selector: 'app-cadastro',
@@ -17,14 +18,13 @@ export class CadastroComponent implements OnInit {
     navigate: string;
 
     constructor(
-        readonly renderer: Renderer2,
-        @Inject(DOCUMENT) readonly document: Document,
         private readonly service: UsuarioService,
         private readonly toastr: ToastrService,
         private readonly router: Router,
-        readonly route: ActivatedRoute
+        readonly route: ActivatedRoute,
+        readonly image: ImagesService
     ) {
-        renderer.addClass(document.body, 'bg-image');
+        image.setImage();
         route.queryParams.subscribe((params) => this.navigate = params.navigate);
     }
 

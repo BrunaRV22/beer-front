@@ -22,7 +22,6 @@ export class EnderecoComponent {
 
         @Inject(DOCUMENT) readonly document: Document
       ) {
-        this.renderer.addClass(document.body, 'bg-image');
         route.data.subscribe((params) => this.enderecos = params.enderecos);
     }
 

@@ -98,8 +98,12 @@ export class CompraService extends Global {
     }
 
     finalizarCompra(data: { id_endereco: string, produtos: { id: string, quantidade: number }[] }) {
-        return this.http.post(`${this.url}/compra`, data, {
+        return this.http.post<{ id: string, total: number }>(`${this.url}/compra`, data, {
             withCredentials: true
         });
+    }
+
+    buscarCompra(id: string) {
+        return this.http.get(`${this.url}/compra/${id}`, { withCredentials: true });
     }
 }

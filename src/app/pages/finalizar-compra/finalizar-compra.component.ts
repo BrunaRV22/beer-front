@@ -55,9 +55,10 @@ export class FinalizarCompraComponent {
 
         this.service.finalizarCompra(data)
             .subscribe(
-                () => {
+                ({ id }) => {
                     this.toaster.success('Compra efetuada com sucesso, aguarde a chegada do produto.', 'Dados salvos');
                     this.service.limparSacola();
+                    this.router.navigate(['/motoboy', id]);
                 },
                 () => {
                     // tslint:disable-next-line: max-line-length

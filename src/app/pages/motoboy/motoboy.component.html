@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="row no-padding">
+        <div class="col-12">
+            <ng-container *ngIf="compra.status === 0; else concluido">
+                <h1>Pedido efetuado com sucesso.</h1>
+                <img src="assets/img/motoboy.png" alt="Motoboy" class="img">
+                <p style="margin-top: 10px;">Seu pedido está sendo preparado e já está sendo enviado.<br>Tempo médio
+                    para chegar no seu destino é de
+                    40 minutos.</p>
+            </ng-container>
+            <ng-template #concluido>
+                <h1>Pedido entregue</h1>
+                <img src="assets/img/entregue.png" alt="Motoboy" class="img">
+                <p style="margin-top: 10px;">Seu pedido já foi entregue.</p>
+            </ng-template>
+        </div>
+    </div>
+</div>

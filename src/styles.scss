@@ -17,11 +17,22 @@
 
 body {
     &.bg-image {
-        background-image: url('/assets/img/fundo.jpg');
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
 
         background-attachment: fixed;
+
+        &.fundo_01 {
+            background-image: url('/assets/img/fundo_01.jpg');
+        }
+        
+        &.fundo_02 {
+            background-image: url('/assets/img/fundo_02.jpg');
+        }
+
+        &.fundo_03 {
+            background-image: url('/assets/img/fundo_03.jpg');
+        }
     }
 }

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DefaultComponent } from './template/default/default.component';
-import { SacolaActivatedService } from './services/activated/sacola.activated.service';
 import { EnderecoActivatedService } from './services/activated/endereco.activated.service';
 
 
@@ -44,6 +43,16 @@ const routes: Routes = [
             path: 'finalizar',
             pathMatch: 'full',
             loadChildren: () => import('./pages/finalizar-compra/finalizar-compra.module').then((m) => m.FinalizarCompraModule)
+          }
+        ]
+      },
+      {
+        path: 'motoboy',
+        runGuardsAndResolvers: 'always',
+        children: [
+          {
+            path: ':id',
+            loadChildren: () => import('./pages/motoboy/motoboy.module').then((m) => m.MotoboyModule)
           }
         ]
       },

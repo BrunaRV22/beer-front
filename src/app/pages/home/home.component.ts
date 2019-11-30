@@ -6,6 +6,7 @@ import { CompraComponent } from 'src/app/components/modal/compra/compra.componen
 import { ModalService } from 'src/app/services/custom/modal/modal.service';
 import { CompraService } from 'src/app/services/compra.service';
 import { DOCUMENT } from '@angular/common';
+import { ImagesService } from 'src/app/services/images.service';
 
 @Component({
   selector: 'app-home',
@@ -20,11 +21,9 @@ export class HomeComponent {
     readonly title: Title,
     private readonly modalService: ModalService,
     private readonly comprarService: CompraService,
-
-    readonly renderer: Renderer2,
-    @Inject(DOCUMENT) readonly document: Document
+    readonly image: ImagesService
   ) {
-    this.renderer.addClass(document.body, 'bg-image');
+    image.setImage();
 
     route.data
       .subscribe((params) => {
