@@ -1,7 +1,6 @@
 import { Component, Renderer2, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { Router, NavigationEnd, ChildActivationEnd, ActivationEnd } from '@angular/router';
-import { tap, filter } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
