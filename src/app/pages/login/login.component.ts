@@ -2,6 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ImagesService } from 'src/app/services/images.service';
 
 @Component({
     selector: 'app-login',
@@ -17,8 +18,10 @@ export class LoginComponent implements OnDestroy {
     constructor(
         private readonly service: LoginService,
         private readonly router: Router,
-        readonly route: ActivatedRoute
+        readonly route: ActivatedRoute,
+        private readonly image: ImagesService
     ) {
+        image.setImage();
         route.queryParams.subscribe((params) => this.navigate = params.navigate || null);
         this.login = {
             email: null,

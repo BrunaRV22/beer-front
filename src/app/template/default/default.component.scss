@@ -17,6 +17,22 @@
                 color: white;
             }
         }
+
+        .overflow-hidden {
+            overflow: hidden;
+
+            .text {
+                display: inline-block;
+            }
+
+            .btn-link {
+                display: block;
+                width: 100%;
+                text-align: right;
+                padding: 0;
+                color: white;
+            }
+        }
     }
 }
 

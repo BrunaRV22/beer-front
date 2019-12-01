@@ -3,15 +3,20 @@ import { Injectable } from '@angular/core';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
     get getAuth() {
-        try {
-            return {
-                authorization: localStorage.getItem('A'),
-                email: localStorage.getItem('mail'),
-                usuario: localStorage.getItem('user')
-            };
-        } catch (error) {
-            return {};
+
+        if (window.localStorage) {
+            const authorization = localStorage.getItem('A');
+            const email = localStorage.getItem('mail');
+            const usuario = localStorage.getItem('user');
+
+            if (authorization && email && usuario) {
+                return { authorization, email, usuario };
+            } else {
+                return null;
+            }
         }
+
+        return null;
     }
 
     setAuth(authorization: string, email?: string, usuario?: string, image?: string) {
@@ -27,7 +32,6 @@ export class AuthService {
     }
 
     isLogged() {
-        console.log(localStorage.getItem('mail'), localStorage.getItem('mail') !== null);
         return localStorage.getItem('mail') !== null;
     }
 

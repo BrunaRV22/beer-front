@@ -13,7 +13,7 @@ export class ApiInterceptorService implements HttpInterceptor {
         let headers = req.headers;
 
         if (req.withCredentials) {
-            headers = headers.append('Authorization', this.auth.getAuth.authorization);
+            headers = headers.append('Authorization', (this.auth.getAuth ? this.auth.getAuth.authorization : null));
         }
 
         req = req.clone({ headers, withCredentials: false });

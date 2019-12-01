@@ -17,7 +17,12 @@ export class DefaultComponent {
         return this.compraService.totalItens();
     }
 
-    visualizar_sacola() {
+    get getAuth() {
+        console.log(this.auth.getAuth);
+        return this.auth.getAuth;
+    }
 
+    logout() {
+        return this.auth.clearAuth();
     }
 }

@@ -9,8 +9,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item" routerLinkActive="active" routerLink="/"
-                [routerLinkActiveOptions]="{ exact: true }">
+            <li class="nav-item" routerLinkActive="active" routerLink="/" [routerLinkActiveOptions]="{ exact: true }">
                 <a class="nav-link" routerLink="/">Início <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item" routerLinkActive="active" routerLink="/perfil"
@@ -57,8 +56,20 @@
             </a>
         </ng-template>
         <div class="navbar-text">
-            <button type="button" class="btn btn-link text-title"
-                routerLink="/cadastro/usuario">Cadastre-se</button>
+            <ng-container *ngIf="getAuth === undefined || getAuth === null; else showUsername">
+                <button type="button" class="btn btn-link text-title d-inline-block align-top p-0" style="margin-right: 10px;"
+                    routerLink="/cadastro/usuario">Cadastre-se</button><span class=" d-inline-block align-top">ou</span>
+                <button type="button" class="btn btn-link text-title d-inline-block align-top w-100 p-0 text-align-left"
+                    routerLink="/login">Logue</button>
+            </ng-container>
+
+            <ng-template #showUsername>
+                <div class="d-block overflow-hidden">
+                    <span class="text">Olá, </span>
+                    <span class="text username">{{ getAuth.usuario }}</span>
+                    <button type="button" class="btn btn-link" (click)="logout()">Sair</button>
+                </div>
+            </ng-template>
         </div>
     </div>
 </nav>

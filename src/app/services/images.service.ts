@@ -3,11 +3,11 @@ import { DOCUMENT } from '@angular/common';
 
 @Injectable()
 export class ImagesService {
-    readonly renderer: Renderer2;
+    private readonly renderer: Renderer2;
 
     constructor(
         @Inject(DOCUMENT) private readonly document: Document,
-        private readonly factory: RendererFactory2
+        readonly factory: RendererFactory2
     ) {
         this.renderer = factory.createRenderer(null, null);
     }
