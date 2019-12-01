@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { EnderecoService } from 'src/app/services/endereco.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ImageService } from 'src/app/services/image.service';
 
 @Component({
     selector: 'app-novo-endereco',
     templateUrl: './novo-endereco.component.html',
     styleUrls: ['./novo-endereco.component.scss']
 })
-export class NovoEnderecoComponent implements OnInit {
+export class NovoEnderecoComponent implements OnInit, OnDestroy {
     submitted = null;
     endereco: FormGroup;
     navigate: string;
@@ -20,8 +21,10 @@ export class NovoEnderecoComponent implements OnInit {
         private readonly toastr: ToastrService,
         private readonly service: EnderecoService,
         private readonly router: Router,
+        private readonly image: ImageService,
         readonly route: ActivatedRoute
     ) {
+        image.setImage('fundo_04');
         route.queryParams.subscribe((params) => this.navigate = params.navigate);
         meta.addTags([
             {
@@ -83,5 +86,9 @@ export class NovoEnderecoComponent implements OnInit {
         } else {
             this.toastr.warning('Insira todos os dados corretamente antes de salvar', 'Falha ao salvar dados');
         }
+    }
+
+    ngOnDestroy() {
+        this.image.setImage('fundo_01');
     }
 }

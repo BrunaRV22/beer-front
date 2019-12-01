@@ -18,7 +18,7 @@
             </li>
             <li class="nav-item" routerLinkActive="active" routerLink="/promocao"
                 [routerLinkActiveOptions]="{ exact: true }">
-                <a class="nav-link" routerLink="/promocoes">Promoções</a>
+                <a class="nav-link" routerLink="/promocao">Promoções</a>
             </li>
         </ul>
         <ng-container *ngIf="(total() | async) > 0; else sacolaVazia">

@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { LoginService } from 'src/app/services/login.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from 'src/app/services/auth.service';
+import { ImageService } from 'src/app/services/image.service';
 
 @NgModule({
     declarations: [ LoginComponent ],
@@ -16,13 +17,15 @@ import { AuthService } from 'src/app/services/auth.service';
         RouterModule.forChild([
             {
                 path: '',
-                component: LoginComponent
+                component: LoginComponent,
+                data: { background: 'fundo_03', },
             }
         ])
     ],
     providers: [
         LoginService,
-        AuthService
+        AuthService,
+        ImageService
     ]
 })
 export class LoginModule {  }

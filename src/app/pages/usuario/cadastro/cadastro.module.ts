@@ -5,6 +5,7 @@ import { CadastroComponent } from './cadastro.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { ImageService } from 'src/app/services/image.service';
 
 @NgModule({
     imports: [
@@ -20,6 +21,9 @@ import { UsuarioService } from 'src/app/services/usuario.service';
         ])
     ],
     declarations: [ CadastroComponent ],
-    providers: [ UsuarioService ]
+    providers: [
+        UsuarioService,
+        ImageService
+    ]
 })
 export class CadastroModule {  }

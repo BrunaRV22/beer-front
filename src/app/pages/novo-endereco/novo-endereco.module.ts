@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ValidatorModule } from 'src/app/directives/validator/validator.module';
 import { ErrorControlModule } from 'src/app/directives/error-control/error-control.module';
 import { EnderecoService } from 'src/app/services/endereco.service';
+import { ImageService } from 'src/app/services/image.service';
 
 @NgModule({
     declarations: [ NovoEnderecoComponent ],
@@ -24,6 +25,9 @@ import { EnderecoService } from 'src/app/services/endereco.service';
             }
         ])
     ],
-    providers: [ EnderecoService ]
+    providers: [
+        EnderecoService,
+        ImageService
+    ]
 })
 export class NovoEnderecoModule {  }

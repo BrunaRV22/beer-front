@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ImageService } from 'src/app/services/image.service';
 
 @Component({
     selector: 'app-cadastro',
     templateUrl: './cadastro.component.html',
     styleUrls: ['./cadastro.component.scss']
 })
-export class CadastroComponent implements OnInit {
+export class CadastroComponent implements OnInit, OnDestroy {
     form: FormGroup;
     submitted = false;
     navigate: string;
@@ -19,8 +20,10 @@ export class CadastroComponent implements OnInit {
         private readonly service: UsuarioService,
         private readonly toastr: ToastrService,
         private readonly router: Router,
+        private readonly image: ImageService,
         readonly route: ActivatedRoute
     ) {
+        image.setImage('fundo_04');
         route.queryParams.subscribe((params) => this.navigate = params.navigate);
     }
 
@@ -67,5 +70,9 @@ export class CadastroComponent implements OnInit {
                     }
                 );
         }
+    }
+
+    ngOnDestroy() {
+        this.image.setImage('fundo_01');
     }
 }

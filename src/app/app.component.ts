@@ -1,5 +1,7 @@
 import { Component, Renderer2, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { Router, NavigationEnd, ChildActivationEnd, ActivationEnd } from '@angular/router';
+import { tap, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +10,10 @@ import { DOCUMENT } from '@angular/common';
 export class AppComponent {
   constructor(
     readonly renderer: Renderer2,
-    @Inject(DOCUMENT) readonly document: Document
+    @Inject(DOCUMENT) readonly document: Document,
+    readonly router: Router
   ) {
     renderer.addClass(document.body, 'bg-image');
-    // const id = Math.ceil(Math.random() * 3);
-    renderer.addClass(document.body, `fundo_01`);
+    renderer.addClass(document.body, 'fundo_01');
   }
 }
