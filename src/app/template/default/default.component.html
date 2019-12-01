@@ -16,7 +16,7 @@
                 [routerLinkActiveOptions]="{ exact: true }">
                 <a class="nav-link" routerLink="/perfil">Perfil</a>
             </li>
-            <li class="nav-item" routerLinkActive="active" routerLink="/promocoes"
+            <li class="nav-item" routerLinkActive="active" routerLink="/promocao"
                 [routerLinkActiveOptions]="{ exact: true }">
                 <a class="nav-link" routerLink="/promocoes">Promoções</a>
             </li>
@@ -65,7 +65,7 @@
 
             <ng-template #showUsername>
                 <div class="d-block overflow-hidden">
-                    <span class="text">Olá, </span>
+                    <span class="text" style="margin-right: 5px;">Olá,</span>
                     <span class="text username">{{ getAuth.usuario }}</span>
                     <button type="button" class="btn btn-link" (click)="logout()">Sair</button>
                 </div>

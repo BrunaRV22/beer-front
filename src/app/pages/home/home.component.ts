@@ -5,8 +5,6 @@ import { Title } from '@angular/platform-browser';
 import { CompraComponent } from 'src/app/components/modal/compra/compra.component';
 import { ModalService } from 'src/app/services/custom/modal/modal.service';
 import { CompraService } from 'src/app/services/compra.service';
-import { DOCUMENT } from '@angular/common';
-import { ImagesService } from 'src/app/services/images.service';
 
 @Component({
   selector: 'app-home',
@@ -20,11 +18,8 @@ export class HomeComponent {
     readonly route: ActivatedRoute,
     readonly title: Title,
     private readonly modalService: ModalService,
-    private readonly comprarService: CompraService,
-    readonly image: ImagesService
+    private readonly comprarService: CompraService
   ) {
-    image.setImage();
-
     route.data
       .subscribe((params) => {
         if (params.title) {

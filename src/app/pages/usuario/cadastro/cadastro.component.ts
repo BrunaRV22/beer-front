@@ -1,11 +1,9 @@
-import { Component, Renderer2, Inject, OnInit } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ImagesService } from 'src/app/services/images.service';
 
 @Component({
     selector: 'app-cadastro',
@@ -21,10 +19,8 @@ export class CadastroComponent implements OnInit {
         private readonly service: UsuarioService,
         private readonly toastr: ToastrService,
         private readonly router: Router,
-        readonly route: ActivatedRoute,
-        readonly image: ImagesService
+        readonly route: ActivatedRoute
     ) {
-        image.setImage();
         route.queryParams.subscribe((params) => this.navigate = params.navigate);
     }
 

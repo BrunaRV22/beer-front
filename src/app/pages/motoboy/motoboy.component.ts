@@ -1,8 +1,5 @@
-import { Component, Inject, Renderer2 } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ImagesService } from 'src/app/services/images.service';
-
 @Component({
     selector: 'app-motoboy',
     templateUrl: './motoboy.component.html',
@@ -21,10 +18,8 @@ export class MotoboyComponent {
     compra: { status: number };
 
     constructor(
-        readonly image: ImagesService,
         readonly route: ActivatedRoute
     ) {
-        image.setImage();
         route.data.subscribe((params) => this.compra = params.compra);
     }
 }

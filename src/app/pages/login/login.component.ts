@@ -2,7 +2,6 @@ import { Component, OnDestroy } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ImagesService } from 'src/app/services/images.service';
 
 @Component({
     selector: 'app-login',
@@ -18,10 +17,8 @@ export class LoginComponent implements OnDestroy {
     constructor(
         private readonly service: LoginService,
         private readonly router: Router,
-        readonly route: ActivatedRoute,
-        private readonly image: ImagesService
+        readonly route: ActivatedRoute
     ) {
-        image.setImage();
         route.queryParams.subscribe((params) => this.navigate = params.navigate || null);
         this.login = {
             email: null,
@@ -39,7 +36,6 @@ export class LoginComponent implements OnDestroy {
                         this.login.senha = null;
                     });
             }, (err) => {
-                console.log('Error', err);
                 this.message = err.message || 'Usuário ou senha incorretos';
                 this.subscription = null;
             });

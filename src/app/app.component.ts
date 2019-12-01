@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { CompraService } from './services/compra.service';
+import { Component, Renderer2, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +7,11 @@ import { CompraService } from './services/compra.service';
 })
 export class AppComponent {
   constructor(
-    readonly compra: CompraService
-  ) {  }
+    readonly renderer: Renderer2,
+    @Inject(DOCUMENT) readonly document: Document
+  ) {
+    renderer.addClass(document.body, 'bg-image');
+    // const id = Math.ceil(Math.random() * 3);
+    renderer.addClass(document.body, `fundo_01`);
+  }
 }

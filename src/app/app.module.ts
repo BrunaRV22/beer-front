@@ -23,7 +23,6 @@ import { SacolaActivatedService } from './services/activated/sacola.activated.se
 import { EnderecoActivatedService } from './services/activated/endereco.activated.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { ImagesService } from './services/images.service';
 
 registerLocaleData(localeBR, 'pt-BR', localeBRExtra);
 
@@ -50,7 +49,6 @@ registerLocaleData(localeBR, 'pt-BR', localeBRExtra);
     AuthService,
     TokenService,
     CompraService,
-    ImagesService,
     {
       provide: APP_BASE_HREF,
       useValue: '/'
