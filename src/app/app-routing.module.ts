@@ -47,14 +47,9 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'motoboy',
+        path: 'motoboy/:id',
         runGuardsAndResolvers: 'always',
-        children: [
-          {
-            path: ':id',
-            loadChildren: () => import('./pages/motoboy/motoboy.module').then((m) => m.MotoboyModule)
-          }
-        ]
+        loadChildren: () => import('./pages/motoboy/motoboy.module').then((m) => m.MotoboyModule)
       },
       {
         path: 'cadastro',
@@ -69,6 +64,15 @@ const routes: Routes = [
           }
         ]
       },
+      {
+        path: 'perfil',
+        loadChildren: () => import('./pages/perfil/perfil.module').then((m) => m.PerfilModule)
+      },
+      {
+        path: 'promocao',
+        loadChildren: () => import('./pages/promocao/promocao.module').then((m) => m.PromocaoModule)
+      },
+
       {
         path: 'login',
         loadChildren: () => import('./pages/login/login.module').then((m) => m.LoginModule)

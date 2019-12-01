@@ -1,12 +1,9 @@
-import { Component, Renderer2, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
-import { DOCUMENT } from '@angular/common';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { filter } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { EnderecoService } from 'src/app/services/endereco.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ImagesService } from 'src/app/services/images.service';
 
 @Component({
     selector: 'app-novo-endereco',
@@ -23,10 +20,8 @@ export class NovoEnderecoComponent implements OnInit {
         private readonly toastr: ToastrService,
         private readonly service: EnderecoService,
         private readonly router: Router,
-        readonly route: ActivatedRoute,
-        readonly image: ImagesService
+        readonly route: ActivatedRoute
     ) {
-        image.setImage();
         route.queryParams.subscribe((params) => this.navigate = params.navigate);
         meta.addTags([
             {

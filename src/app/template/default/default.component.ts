@@ -18,7 +18,6 @@ export class DefaultComponent {
     }
 
     get getAuth() {
-        console.log(this.auth.getAuth);
         return this.auth.getAuth;
     }
 
