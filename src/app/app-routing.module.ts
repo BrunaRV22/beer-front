@@ -68,12 +68,12 @@ const routes: Routes = [
             loadChildren: () => import('./pages/novo-endereco/novo-endereco.module').then((m) => m.NovoEnderecoModule)
           }
         ]
+      },
+      {
+        path: 'login',
+        loadChildren: () => import('./pages/login/login.module').then((m) => m.LoginModule)
       }
     ]
-  },
-  {
-    path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then((m) => m.LoginModule)
   }
 ];
 

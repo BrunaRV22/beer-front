@@ -57,10 +57,10 @@
         </ng-template>
         <div class="navbar-text">
             <ng-container *ngIf="getAuth === undefined || getAuth === null; else showUsername">
-                <button type="button" class="btn btn-link text-title d-inline-block align-top p-0" style="margin-right: 10px;"
+                <button type="button" class="btn btn-link text-title d-inline-block align-top p-0" style="margin: 0 5px 0 0;"
                     routerLink="/cadastro/usuario">Cadastre-se</button><span class=" d-inline-block align-top">ou</span>
-                <button type="button" class="btn btn-link text-title d-inline-block align-top w-100 p-0 text-align-left"
-                    routerLink="/login">Logue</button>
+                <button type="button" class="btn btn-link text-title d-inline-block align-top w-100 p-0 m-0"
+                    routerLink="/login" style="text-align: left;">Logue</button>
             </ng-container>
 
             <ng-template #showUsername>
