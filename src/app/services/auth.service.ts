@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AuthService {
     get getAuth() {
-        return {
-            authorization: localStorage.getItem('A'),
-            email: localStorage.getItem('mail'),
-            usuario: localStorage.getItem('user')
-        };
+        try {
+            return {
+                authorization: localStorage.getItem('A'),
+                email: localStorage.getItem('mail'),
+                usuario: localStorage.getItem('user')
+            };
+        } catch (error) {
+            return {};
+        }
     }
 
     setAuth(authorization: string, email?: string, usuario?: string, image?: string) {
