@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DefaultComponent } from './template/default/default.component';
 import { EnderecoActivatedService } from './services/activated/endereco.activated.service';
+import { PedidosActivatedService } from './services/activated/pedidos-activated.service';
 
 
 const routes: Routes = [
@@ -65,8 +66,10 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'perfil',
-        loadChildren: () => import('./pages/perfil/perfil.module').then((m) => m.PerfilModule)
+        path: 'pedidos',
+        runGuardsAndResolvers: 'always',
+        canActivate: [PedidosActivatedService],
+        loadChildren: () => import('./pages/pedidos/pedidos.module').then((m) => m.PedidosModule)
       },
       {
         path: 'promocao',

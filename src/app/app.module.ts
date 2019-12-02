@@ -23,6 +23,7 @@ import { SacolaActivatedService } from './services/activated/sacola.activated.se
 import { EnderecoActivatedService } from './services/activated/endereco.activated.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { PedidosActivatedService } from './services/activated/pedidos-activated.service';
 
 registerLocaleData(localeBR, 'pt-BR', localeBRExtra);
 
@@ -69,7 +70,8 @@ registerLocaleData(localeBR, 'pt-BR', localeBRExtra);
 
     SacolaResolverService,
     SacolaActivatedService,
-    EnderecoActivatedService
+    EnderecoActivatedService,
+    PedidosActivatedService
   ],
   bootstrap: [AppComponent],
   entryComponents: [

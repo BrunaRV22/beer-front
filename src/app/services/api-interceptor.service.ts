@@ -12,8 +12,8 @@ export class ApiInterceptorService implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler) {
         let headers = req.headers;
 
-        if (req.withCredentials) {
-            headers = headers.append('Authorization', (this.auth.getAuth ? this.auth.getAuth.authorization : null));
+        if (req.withCredentials && this.auth.getAuth) {
+            headers = headers.append('Authorization', this.auth.getAuth.authorization);
         }
 
         req = req.clone({ headers, withCredentials: false });
