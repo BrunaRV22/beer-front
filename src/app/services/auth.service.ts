@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
     get getAuth() {
-
-        if (window.localStorage) {
+        if (window && window.localStorage) {
             const authorization = localStorage.getItem('A');
             const email = localStorage.getItem('mail');
             const usuario = localStorage.getItem('user');
