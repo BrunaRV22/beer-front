@@ -14,6 +14,10 @@ export class ProdutoService extends Global {
         return this.http.get(`${this.url}/produto`);
     }
 
+    listarPromocao() {
+        return this.http.get(`${this.url}/produto/promocao`);
+    }
+
     buscar(id: string) {
         return this.http.get(`${this.url}/produto/${id}`);
     }

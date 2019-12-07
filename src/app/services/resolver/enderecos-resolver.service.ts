@@ -33,12 +33,6 @@ export class EnderecosResolverService implements Resolve<Observable<CompraEndere
                             }
                         });
                     }
-
-                    if (enderecos.length === 1) {
-                        const endereco = enderecos[0];
-                        this.service.adicionarEndereco(endereco);
-                        this.router.navigate(['/sacola/finalizar']);
-                    }
                 }),
                 catchError((response) => {
                     if (response instanceof HttpErrorResponse) {

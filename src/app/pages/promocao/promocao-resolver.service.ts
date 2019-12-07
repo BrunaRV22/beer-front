@@ -9,6 +9,6 @@ export class PromocaoResolverService implements Resolve<any> {
     ) {  }
 
     resolve() {
-        return this.service.listar();
+        return this.service.listarPromocao();
     }
 }

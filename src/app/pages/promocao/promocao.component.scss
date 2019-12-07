@@ -1,5 +1,6 @@
 
 .card {
+    position: relative;
     margin: 15px;
 
     .card-img-top {
@@ -7,4 +8,9 @@
         width: 100%;
         object-fit: contain;
     }
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #e0e0e0;
 }
