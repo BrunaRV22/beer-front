@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Produto } from '../model/produto';
 import { BehaviorSubject } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { filter, map, shareReplay } from 'rxjs/operators';
 import { Endereco } from '../model/endereco';
 import { Global } from './global';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class CompraService extends Global {
@@ -98,9 +98,8 @@ export class CompraService extends Global {
     }
 
     finalizarCompra(data: { id_endereco: string, produtos: { id: string, quantidade: number }[] }) {
-        return this.http.post<{ id: string, total: number }>(`${this.url}/compra`, data, {
-            withCredentials: true
-        });
+        return this.http.post<{ id: string, total: number }>(`${this.url}/compra`, data, { withCredentials: true })
+            .pipe(shareReplay());
     }
 
     buscarCompra(id: string) {

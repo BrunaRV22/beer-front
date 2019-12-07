@@ -1,7 +1,9 @@
 import { CanActivate, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class EnderecoActivatedService implements CanActivate {
     constructor(
         private readonly auth: AuthService,

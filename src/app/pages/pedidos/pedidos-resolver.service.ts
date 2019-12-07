@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Resolve } from '@angular/router';
+import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { PedidosService } from 'src/app/services/pedidos.service';
 
 @Injectable()
@@ -8,7 +8,9 @@ export class PedidosResolverService implements Resolve<any> {
         private readonly api: PedidosService
     ) { }
 
-    resolve() {
-        return this.api.getPedidos();
+    async resolve(route: ActivatedRouteSnapshot) {
+        const page = route.queryParams.page || 1;
+        const pedidos = await this.api.getPedidos(page).toPromise();
+        return pedidos;
     }
 }

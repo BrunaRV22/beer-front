@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Global } from './global';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable()
 export class PedidosService extends Global {
@@ -13,9 +13,10 @@ export class PedidosService extends Global {
         this.routeURL = `${this.url}/pedidos`;
     }
 
-    getPedidos() {
+    getPedidos(page: number = 1) {
         return this.http.get(this.routeURL, {
-            withCredentials: true
+            withCredentials: true,
+            params: new HttpParams().set('page', page.toString())
         });
     }
 }

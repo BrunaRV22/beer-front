@@ -1,3 +1,33 @@
 <div class="container">
     <h1>Pedidos</h1>
-</div>
+    <ng-container *ngIf="pedidos.compras && pedidos.compras.length > 0; else naoTemPedidos">
+        <div class="card-columns">
+            <div class="card text-white bg-dark p-0" *ngFor="let compra of pedidos.compras"
+                [class.border-warning]="compra.status === 0">
+                <div class="card-body">
+                    <div class="card-title">{{ compra.createdAt | datex: 'DD[.]MM[.]YYYY HH:mm' }}</div>
+                    <p *ngFor="let produto of compra.produtos">{{ produto.quantidade }} x {{ produto.nome }}</p>
+                </div>
+                <div class="card-footer">
+                    <span class="status">
+                        <strong>Status: </strong>
+                        <ng-container [ngSwitch]="compra.status">
+                            <ng-container *ngSwitchCase="0">Em andamento</ng-container>
+                            <ng-container *ngSwitchCase="1">Concluído</ng-container>
+                        </ng-container>
+                    </span>
+
+                    <span class="total">
+                        <strong>Total: </strong>
+                        {{ compra.total | currency: 'BRL' }}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <mat-paginator [length]="pedidos.quantidade" [pageSize]="10" (page)="changePage($event)"></mat-paginator>
+    </ng-container>
+    <ng-template #naoTemPedidos>
+        <p style="text-shadow: 1px 1px #000;">Você não fez ainda nenhum pedido</p>
+    </ng-template>
+</div> 
