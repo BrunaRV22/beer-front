@@ -1,17 +1,24 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-    get getAuth() {
-        if (window && window.localStorage) {
-            const authorization = localStorage.getItem('A');
-            const email = localStorage.getItem('mail');
-            const usuario = localStorage.getItem('user');
+    constructor(
+        @Inject(PLATFORM_ID) private readonly PLATFORM: any
+    ) { }
 
-            if (authorization && email && usuario) {
-                return { authorization, email, usuario };
-            } else {
-                return null;
+    get getAuth() {
+        if (isPlatformBrowser(this.PLATFORM)) {
+            if (window && window.localStorage) {
+                const authorization = localStorage.getItem('A');
+                const email = localStorage.getItem('mail');
+                const usuario = localStorage.getItem('user');
+
+                if (authorization && email && usuario) {
+                    return { authorization, email, usuario };
+                } else {
+                    return null;
+                }
             }
         }
 
